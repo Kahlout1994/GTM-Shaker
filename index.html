@@ -139,6 +139,22 @@ tbody tr:hover{background:#1c2128;}
 .conv-bar{display:flex;height:12px;border-radius:3px;overflow:hidden;min-width:80px;}
 .conv-sold{background:#3fb950;}
 .conv-vis{background:#21262d;}
+  /* ── SEASON PILL ── */
+  .season-pill{display:inline-block;font-size:10px;font-weight:700;padding:2px 10px;border-radius:10px;background:rgba(255,255,255,0.07);letter-spacing:.4px;border:1px solid rgba(255,255,255,0.12);white-space:nowrap;margin-left:10px;vertical-align:middle;}
+  /* ── VISIT OUTCOMES TILES ── */
+  .vis-outcomes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;}
+  .vis-tile{background:#0d1117;border:1px solid #21262d;border-radius:8px;padding:12px 14px;border-top:3px solid #30363d;}
+  .vis-tile.t-green{border-top-color:#3fb950;}
+  .vis-tile.t-amber{border-top-color:#d29922;}
+  .vis-tile.t-red{border-top-color:#f85149;}
+  .vis-tile.t-slate{border-top-color:#484f58;}
+  .vis-tile-val{font-size:22px;font-weight:800;color:#e6edf3;line-height:1.1;}
+  .vis-tile-lbl{font-size:9px;font-weight:700;color:#7d8590;text-transform:uppercase;letter-spacing:.6px;margin-top:4px;}
+  /* ── ACTION REQUIRED ROWS ── */
+  .ar-row{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:6px;margin-bottom:4px;}
+  .ar-not-act{background:#2a0d0d;}
+  .ar-no-sale{background:#1c1500;}
+  .ar-pointer{font-size:10px;color:#7d8590;text-align:right;padding:4px 0;}
 </style>
 </head>
 <body>
@@ -146,9 +162,12 @@ tbody tr:hover{background:#1c2128;}
 
 <!-- ── HEADER ── -->
 <div class="header">
-  <div>
-    <h1>&#11044; Indirect Sales Team &mdash; Operational Dashboard</h1>
-    <div class="sub" id="headerSub">Loading...</div>
+  <div style="display:flex;align-items:center;flex-wrap:wrap;">
+    <div>
+      <h1>&#11044; Indirect Sales Team &mdash; Operational Dashboard</h1>
+      <div class="sub" id="headerSub">Loading...</div>
+    </div>
+    <span id="seasonPill" class="season-pill" style="display:none;"></span>
   </div>
   <div class="header-right" id="headerRight"></div>
 </div>
@@ -196,7 +215,7 @@ tbody tr:hover{background:#1c2128;}
 <div class="tab-nav">
   <button class="tab-btn active" onclick="switchTab('exec',this)">Executive Overview</button>
   <button class="tab-btn" onclick="switchTab('sellout',this)">Sellout Performance</button>
-  <button class="tab-btn" onclick="switchTab('visits',this)">Visits Performance</button>
+  <button class="tab-btn" onclick="switchTab('visits',this)">Visits &amp; Activity</button>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════ -->
@@ -213,6 +232,13 @@ tbody tr:hover{background:#1c2128;}
     </div>
     <div class="kpi-grid" id="execKpis"></div>
   </div>
+  <div class="section" id="dealerPerfSection">
+    <div class="section-hdr">
+      <div class="section-title">Dealer Performance</div>
+      <span class="section-badge" id="dealerPerfBadge"></span>
+    </div>
+    <div class="tbl-wrap"><table><thead id="dealerPerfHead"></thead><tbody id="dealerPerfBody"></tbody></table></div>
+  </div>
   <div class="section">
     <div class="section-hdr"><div class="section-title">Performance by Region</div><span class="section-badge">CW = Current Week &nbsp;|&nbsp; PW = Previous Week</span></div>
     <div class="tbl-wrap"><table><thead id="regSumHead"></thead><tbody id="regSumBody"></tbody></table></div>
@@ -224,12 +250,12 @@ tbody tr:hover{background:#1c2128;}
     </div>
     <div class="tbl-wrap"><table><thead id="picTargetHead"></thead><tbody id="picTargetBody"></tbody></table></div>
   </div>
-  <div class="section">
+  <div class="section" id="actionReqSection">
     <div class="section-hdr">
-      <div class="section-title">Channel Status — All Channels This Period</div>
-      <span class="section-badge" id="chStatusBadge"></span>
+      <div class="section-title">Action Required</div>
+      <span class="section-badge" id="actionReqBadge"></span>
     </div>
-    <div class="tbl-wrap"><table><thead id="chStatusHead"></thead><tbody id="chStatusBody"></tbody></table></div>
+    <div id="actionReqBody"></div>
   </div>
 </div>
 
@@ -275,19 +301,33 @@ tbody tr:hover{background:#1c2128;}
     <div class="section-hdr"><div class="section-title">Top Models</div></div>
     <div class="tbl-wrap"><table><thead id="prodModelHead"></thead><tbody id="prodModelBody"></tbody></table></div>
   </div>
+  <div class="section" id="sellDealerSection">
+    <div class="section-hdr">
+      <div class="section-title">Sellout by Dealer</div>
+      <span class="section-badge" id="sellDealerBadge"></span>
+    </div>
+    <div class="tbl-wrap"><table><thead id="sellDealerHead"></thead><tbody id="sellDealerBody"></tbody></table></div>
+  </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════ -->
-<!-- TAB 3: VISITS PERFORMANCE -->
+<!-- TAB 3: VISITS &amp; ACTIVITY -->
 <!-- ═══════════════════════════════════════════════════════ -->
 <div id="tab-visits" class="tab-content">
   <div class="section">
     <div class="section-hdr"><div class="section-title">Weekly Visits Trend</div></div>
     <div class="tbl-wrap"><table><thead id="visTrendHead"></thead><tbody id="visTrendBody"></tbody></table></div>
   </div>
+  <div class="section" id="visOutcomesSummarySection">
+    <div class="section-hdr">
+      <div class="section-title">Visit Outcomes Summary</div>
+      <span class="section-badge" id="visOutcomesSummaryBadge"></span>
+    </div>
+    <div id="visOutcomesTiles" class="vis-outcomes-grid"></div>
+  </div>
   <div class="two-col">
     <div class="section">
-      <div class="section-hdr"><div class="section-title">Visits by Supervisor — with Conversion</div></div>
+      <div class="section-hdr"><div class="section-title">Activity by PIC — with Conversion</div></div>
       <div class="tbl-wrap"><table><thead id="visUserHead"></thead><tbody id="visUserBody"></tbody></table></div>
     </div>
     <div class="section">
@@ -295,9 +335,30 @@ tbody tr:hover{background:#1c2128;}
       <div class="tbl-wrap"><table><thead id="visRegHead"></thead><tbody id="visRegBody"></tbody></table></div>
     </div>
   </div>
+  <div class="section" id="visNoSaleSection">
+    <div class="section-hdr">
+      <div class="section-title">Visited, No Sale</div>
+      <span class="section-badge" id="visNoSaleBadge"></span>
+    </div>
+    <div class="tbl-wrap"><table><thead id="visNoSaleHead"></thead><tbody id="visNoSaleBody"></tbody></table></div>
+  </div>
+  <div class="section" id="visNotActSection">
+    <div class="section-hdr">
+      <div class="section-title">Not Activated — Action Required</div>
+      <span class="section-badge" id="visNotActBadge"></span>
+    </div>
+    <div class="tbl-wrap"><table><thead id="visNotActHead"></thead><tbody id="visNotActBody"></tbody></table></div>
+  </div>
+  <div class="section" id="visUnassignedSection">
+    <div class="section-hdr">
+      <div class="section-title">Unassigned / No Dealer Visits</div>
+      <span class="section-badge" id="visUnassignedBadge"></span>
+    </div>
+    <div class="tbl-wrap"><table><thead id="visUnassignedHead"></thead><tbody id="visUnassignedBody"></tbody></table></div>
+  </div>
   <div class="section">
     <div class="section-hdr">
-      <div class="section-title">Visit vs Sellout Outcome — All Active Channels</div>
+      <div class="section-title">Detailed Visit Log — All Active Channels</div>
       <span class="section-badge" id="visOutcomeBadge"></span>
     </div>
     <div class="tbl-wrap"><table><thead id="visOutcomeHead"></thead><tbody id="visOutcomeBody"></tbody></table></div>
@@ -4884,6 +4945,7 @@ function updateHeader(){
   const parts=[wk];
   if(F.region)parts.push(F.region);
   if(F.user)parts.push(F.user);
+  if(F.dealer)parts.push(F.dealer);
   document.getElementById('headerSub').textContent='Viewing: '+parts.join(' · ');
   document.getElementById('headerRight').innerHTML=
     'Data through '+fmtW(MAX_WEEK)+' &nbsp;&nbsp;'+
@@ -5055,7 +5117,7 @@ function renderExec(){
   document.getElementById('execPeriodNote').textContent=(F.week?wkRange(F.week)+' · ':'')+(F.region||'All Regions');
   document.getElementById('execBadge').textContent='Assigned Channels: '+act.universe;
 
-  // KPI: Sellout+WoW | Visits+WoW | Assigned | Active | Not Activated | Rate | Assigned Visited | Conversion | Newly Activated
+  // KPI: 5 primary management cards
   document.getElementById('execKpis').innerHTML=`
     <div class="kpi-card c-blue">
       <div class="kpi-label">Total Sellout — ${wkLabel}</div>
@@ -5075,44 +5137,21 @@ function renderExec(){
       </div>
       <div class="kpi-wow ${wowVCls}" style="margin-top:6px;font-size:11px;">${wowVPct!==null?(wowVPct>0?upArrow:wowVPct<0?downArrow:'→')+' '+wowVStr:'—'}&nbsp;WoW</div>
     </div>
-    <div class="kpi-card c-purple">
-      <div class="kpi-label">Assigned Channels</div>
-      <div class="kpi-value">${act.universe}</div>
-      <div class="kpi-sub">Channel_sellout_Ref universe</div>
-    </div>
     <div class="kpi-card c-green">
-      <div class="kpi-label">Active Assigned</div>
-      <div class="kpi-value">${act.active.length}</div>
-      <div style="margin-top:7px;padding-top:6px;border-top:1px solid #21262d;">
-        <div class="kpi-sub" style="font-weight:700;text-transform:uppercase;letter-spacing:.5px;font-size:9px;">Activation Rate</div>
-        <div style="font-size:18px;font-weight:800;color:#3fb950;line-height:1.2;margin-top:2px;">${pct(act.active.length,act.universe)}</div>
-        <div class="kpi-sub">${act.active.length} of ${act.universe} assigned</div>
-      </div>
-    </div>
-    <div class="kpi-card c-red">
-      <div class="kpi-label">Not Activated</div>
-      <div class="kpi-value">${act.inactive.length}</div>
-      <div class="kpi-sub">No sellout up to ${fmtW(act.maxWk)}</div>
-    </div>
-    <div class="kpi-card ${_dealerActive?'c-slate':_tgt!==null?_tCol:'c-slate'}">
-      <div class="kpi-label">Target Achievement</div>
-      <div class="kpi-value" style="font-size:${_dealerActive?'14px':''}${!_dealerActive&&_tgt===null?'font-size:16px;':''}color:${_dealerActive?'#484f58':''}">${_dealerActive?'N/A':_tAch!==null?_tAch+'%':'No Target'}</div>
-      ${_dealerActive?'<div class="kpi-sub" style="color:#484f58;">Target not split by Dealer</div>':_tgt!==null?`<div class="kpi-sub">Target: ${_tgt.toLocaleString()}</div><div class="kpi-sub">MTD Actual: ${_mtdActual.toLocaleString()}</div>`:''}
-    </div>
-    <div class="kpi-card c-slate">
-      <div class="kpi-label">Assigned Visited — ${wkLabel}</div>
-      <div class="kpi-value">${cwVisCh.size}</div>
-      <div class="kpi-sub">Assigned channels with visit</div>
+      <div class="kpi-label">Active Channels</div>
+      <div class="kpi-value">${act.active.length} / ${act.universe}</div>
+      <div class="kpi-sub" style="font-size:16px;font-weight:800;color:#3fb950;margin-top:4px;">${pct(act.active.length,act.universe)}</div>
+      <div class="kpi-sub">${act.inactive.length} not activated</div>
     </div>
     <div class="kpi-card c-blue">
       <div class="kpi-label">Conversion Rate</div>
       <div class="kpi-value">${cwVisCh.size>0?convPct+'%':'—'}</div>
-      <div class="kpi-sub">${converted} sold of ${cwVisCh.size} visited assigned</div>
+      <div class="kpi-sub">${converted} sold / ${cwVisCh.size} visited assigned</div>
     </div>
-    <div class="kpi-card c-amber">
-      <div class="kpi-label">Newly Activated</div>
-      <div class="kpi-value">${F.week!==null?act.newlyActivated.length:'—'}</div>
-      <div class="kpi-sub">${F.week!==null?'First sale in '+fmtW(F.week):'Select a week to view'}</div>
+    <div class="kpi-card ${_dealerActive?'c-slate':_tgt!==null?_tCol:'c-slate'}">
+      <div class="kpi-label">Target Achievement</div>
+      <div class="kpi-value" style="${_dealerActive?'font-size:14px;color:#484f58;':''}">${_dealerActive?'N/A':_tAch!==null?_tAch+'%':'No Target'}</div>
+      ${_dealerActive?'<div class="kpi-sub" style="color:#484f58;">Target not split by Dealer</div>':_tgt!==null?`<div class="kpi-sub">Target: ${_tgt.toLocaleString()}</div><div class="kpi-sub">MTD Actual: ${_mtdActual.toLocaleString()}</div>`:''}
     </div>
   `;
 
@@ -5142,8 +5181,8 @@ function renderExec(){
   document.getElementById('regSumBody').innerHTML=rb||emptyRow(11);
 
   renderPicTargetTable();
-  // CHANNEL STATUS TABLE
-  renderChannelStatusTable(act,cwSell,cwVis);
+  renderDealerPerf(act);
+  renderActionRequired(act,cwSell,cwVis);
 }
 
 function renderChannelStatusTable(act,cwSell,cwVis){
@@ -5184,6 +5223,98 @@ function renderChannelStatusTable(act,cwSell,cwVis){
   }).join('');
   if(rows.length>150)body+=emptyRow(9,'Showing 150 of '+rows.length+'. Use filters to narrow down.');
   document.getElementById('chStatusBody').innerHTML=body;
+}
+
+function renderDealerPerf(act){
+  const sect=document.getElementById('dealerPerfSection');
+  if(!sect)return;
+  if(!RAW_DEALER_REF||!RAW_DEALER_REF.length){sect.style.display='none';return;}
+  sect.style.display='';
+
+  // Channels assigned per dealer from reference
+  const assignedByDealer={};
+  NORM_CHANNEL_SELLOUT_REF.forEach(c=>{
+    if(!c.dealer)return;
+    if(!assignedByDealer[c.dealer])assignedByDealer[c.dealer]=[];
+    assignedByDealer[c.dealer].push(c.channel);
+  });
+
+  // Sellout in selected period by dealer
+  const sellByDealer={};
+  fSell().forEach(r=>{
+    if(!r.dealer)return;
+    if(!sellByDealer[r.dealer])sellByDealer[r.dealer]=0;
+    sellByDealer[r.dealer]+=r.qty;
+  });
+
+  // Visits in selected period by dealer
+  const visByDealer={};
+  fVis().forEach(r=>{
+    if(!r.dealer)return;
+    if(!visByDealer[r.dealer])visByDealer[r.dealer]=0;
+    visByDealer[r.dealer]++;
+  });
+
+  // Cumulative active channels per dealer (any sellout all-time)
+  const activeCumByDealer={};
+  RAW_SELLOUT.filter(r=>r.qty>0).forEach(r=>{
+    if(!r.dealer)return;
+    const ch=norm(r.channel);
+    if(!activeCumByDealer[r.dealer])activeCumByDealer[r.dealer]=new Set();
+    activeCumByDealer[r.dealer].add(ch);
+  });
+
+  document.getElementById('dealerPerfBadge').textContent=RAW_DEALER_REF.length+' dealers';
+  document.getElementById('dealerPerfHead').innerHTML=th(['Dealer','Assigned Ch.','Active Ch.','Act. %','Period Sellout','Period Visits']);
+  let bd='';
+  RAW_DEALER_REF.forEach(d=>{
+    const dl=d.dealer;
+    const assigned=(assignedByDealer[dl]||[]).length;
+    const activeCh=activeCumByDealer[dl]?[...activeCumByDealer[dl]].filter(ch=>(assignedByDealer[dl]||[]).includes(ch)).length:0;
+    const actRate=assigned>0?pct(activeCh,assigned):'—';
+    const qty=sellByDealer[dl]||0;
+    const vis=visByDealer[dl]||0;
+    const qtyFmt=qty>0?qty.toLocaleString():'—';
+    const visFmt=vis>0?vis:'—';
+    bd+='<tr><td><strong>'+dl+'</strong></td>'+tdC(assigned||'—')+tdC(activeCh||'—')+'<td class="num">'+actRate+'</td>'+tdR(qtyFmt)+'<td class="num">'+visFmt+'</td></tr>';
+  });
+  document.getElementById('dealerPerfBody').innerHTML=bd||emptyRow(6);
+}
+
+function renderActionRequired(act,cwSell,cwVis){
+  const sect=document.getElementById('actionReqSection');
+  if(!sect)return;
+
+  const cwSByCh={};cwSell.forEach(r=>{const ch=norm(r.channel);cwSByCh[ch]=(cwSByCh[ch]||0)+r.qty;});
+  const cwVByCh={};cwVis.forEach(r=>{const ch=norm(r.channel);cwVByCh[ch]=(cwVByCh[ch]||0)+1;});
+
+  // Not activated — top 4
+  const notActRows=act.inactive.slice(0,4);
+  // Visited no sale — assigned channels with visit but no sellout this period — top 4
+  const visitedNoSale=Object.entries(cwVByCh)
+    .filter(([ch])=>ASSIGNED_SET.has(ch)&&!(cwSByCh[ch]>0))
+    .slice(0,4);
+
+  const totalNotAct=act.inactive.length;
+  const totalNoSale=Object.entries(cwVByCh).filter(([ch])=>ASSIGNED_SET.has(ch)&&!(cwSByCh[ch]>0)).length;
+
+  document.getElementById('actionReqBadge').textContent=totalNotAct+' not activated · '+totalNoSale+' visited no sale';
+
+  let html='';
+  if(!notActRows.length&&!visitedNoSale.length){
+    html='<div class="all-good" style="padding:14px;">No critical actions — all assigned channels active and converting this period</div>';
+  } else {
+    notActRows.forEach(c=>{
+      html+='<div class="ar-row ar-not-act"><span class="badge b-inactive" style="flex-shrink:0;">Not Activated</span><span style="font-size:12px;color:#c9d1d9;flex:1;"><strong>'+c.channel+'</strong> — '+c.region+'</span></div>';
+    });
+    visitedNoSale.forEach(([ch,cnt])=>{
+      html+='<div class="ar-row ar-no-sale"><span class="badge b-nosale" style="flex-shrink:0;">Visited, No Sale</span><span style="font-size:12px;color:#c9d1d9;flex:1;"><strong>'+ch+'</strong> — '+cnt+' visit'+(cnt>1?'s':'')+'</span></div>';
+    });
+    const shown=notActRows.length+visitedNoSale.length;
+    const total=totalNotAct+totalNoSale;
+    if(total>shown)html+='<div class="ar-pointer">+'+(total-shown)+' more — full detail in Visits &amp; Activity tab</div>';
+  }
+  document.getElementById('actionReqBody').innerHTML=html;
 }
 
 // ============================================================
@@ -5279,6 +5410,14 @@ function renderSellout(){
   const maxMQ=topMod.length?topMod[0][1].qty:1;
   document.getElementById('prodModelHead').innerHTML=th(['#','Model','Product','Category','Type','Units','Volume']);
   document.getElementById('prodModelBody').innerHTML=topMod.map(([m,d],i)=>'<tr><td class="rank">'+String(i+1).padStart(2,' ')+'</td><td><strong>'+m+'</strong></td><td>'+(d.prd||'—')+'</td><td>'+(d.cat||'—')+'</td><td>'+(d.tp||'—')+'</td>'+tdR(d.qty)+'<td>'+bar(d.qty,maxMQ,'g')+'</td></tr>').join('')||emptyRow(7);
+
+  // ─ BY DEALER ─
+  const dD={};allSell.forEach(r=>{const dl=r.dealer||'Unassigned';if(!dD[dl])dD[dl]={qty:0,ch:new Set()};dD[dl].qty+=r.qty;dD[dl].ch.add(norm(r.channel));});
+  const dlTotQ=Object.values(dD).reduce((s,d)=>s+d.qty,0);
+  const maxDQ=Math.max(...Object.values(dD).map(d=>d.qty),1);
+  document.getElementById('sellDealerBadge').textContent='by total units · '+Object.keys(dD).filter(k=>k!=='Unassigned').length+' dealers';
+  document.getElementById('sellDealerHead').innerHTML=th(['Dealer','Channels','Units','% of Total','Volume']);
+  document.getElementById('sellDealerBody').innerHTML=Object.entries(dD).sort((a,b)=>b[1].qty-a[1].qty).map(([dl,d])=>'<tr><td><strong>'+dl+'</strong></td>'+tdC(d.ch.size)+tdR(d.qty)+'<td class="num">'+pct(d.qty,dlTotQ)+'</td><td>'+bar(d.qty,maxDQ,'g')+'</td></tr>').join('')||emptyRow(5);
 }
 
 // ============================================================
@@ -5342,6 +5481,51 @@ function renderVisits(){
     return '<tr><td><strong>'+ch+'</strong></td><td>'+(vd.reg||'—')+'</td><td>'+(vd.sup||'—')+'</td>'+tdC(vd.cnt||'—')+'<td>'+([...new Set(vd.types)].join(', ')||'—')+'</td>'+tdR(units||'—')+'<td>'+bdg+'</td></tr>';
   }).join('');
   document.getElementById('visOutcomeBody').innerHTML=voBody||emptyRow(7);
+
+  // ─ VISIT OUTCOMES SUMMARY TILES ─
+  const assignedVisitedSet=new Set([...Object.keys(cwVByCh)].filter(ch=>ASSIGNED_SET.has(ch)));
+  const visitedAndSoldCnt=[...assignedVisitedSet].filter(ch=>cwSByCh[ch]>0).length;
+  const visitedNoSaleCnt=[...assignedVisitedSet].filter(ch=>!(cwSByCh[ch]>0)).length;
+  const unassignedVisCnt=cwV.filter(r=>!r.dealer).length;
+  const totalAssignedVisited=assignedVisitedSet.size;
+  document.getElementById('visOutcomesSummaryBadge').textContent='assigned channels only';
+  document.getElementById('visOutcomesTiles').innerHTML=
+    '<div class="vis-tile t-green"><div class="vis-tile-val">'+totalAssignedVisited+'</div><div class="vis-tile-lbl">Assigned Visited</div></div>'+
+    '<div class="vis-tile t-green"><div class="vis-tile-val">'+visitedAndSoldCnt+'</div><div class="vis-tile-lbl">Visited + Sold</div></div>'+
+    '<div class="vis-tile t-amber"><div class="vis-tile-val">'+visitedNoSaleCnt+'</div><div class="vis-tile-lbl">Visited, No Sale</div></div>'+
+    '<div class="vis-tile t-slate"><div class="vis-tile-val">'+unassignedVisCnt+'</div><div class="vis-tile-lbl">Unassigned Visits</div></div>';
+
+  // ─ VISITED, NO SALE (dedicated table) ─
+  const noSaleRows=Object.entries(cwVByCh).filter(([ch])=>ASSIGNED_SET.has(ch)&&!(cwSByCh[ch]>0));
+  const lastVisitMeta={};fVisAllTime().forEach(r=>{const ch=norm(r.channel);if(!lastVisitMeta[ch]||r.week>lastVisitMeta[ch].week)lastVisitMeta[ch]={date:r.date||'—',sup:r.supervisor||'—',reg:r.region||'—'};});
+  document.getElementById('visNoSaleBadge').textContent=noSaleRows.length+' channels';
+  document.getElementById('visNoSaleHead').innerHTML=th(['Channel','Region','Supervisor','Visits (Period)','Last Visit Date']);
+  document.getElementById('visNoSaleBody').innerHTML=noSaleRows.sort((a,b)=>b[1]-a[1]).map(([ch,cnt])=>{
+    const meta=lastVisitMeta[ch]||{date:'—',sup:'—',reg:'—'};
+    return '<tr><td><strong>'+ch+'</strong></td><td>'+meta.reg+'</td><td>'+meta.sup+'</td>'+tdC(cnt)+tdC(meta.date)+'</tr>';
+  }).join('')||emptyRow(5,'No visited-without-sale channels in selected period.');
+
+  // ─ NOT ACTIVATED (action required) ─
+  const actForVis=computeActivation();
+  const allTimeLV={};const allTimeTotVis={};
+  fVisAllTime().forEach(r=>{const ch=norm(r.channel);allTimeTotVis[ch]=(allTimeTotVis[ch]||0)+1;if(!allTimeLV[ch]||r.week>allTimeLV[ch].week)allTimeLV[ch]={date:r.date||'—',sup:r.supervisor||'—',week:r.week};});
+  document.getElementById('visNotActBadge').textContent=actForVis.inactive.length+' channels';
+  document.getElementById('visNotActHead').innerHTML=th(['Channel','Region','Total Visits','Last Visit Date','Last Visitor']);
+  document.getElementById('visNotActBody').innerHTML=actForVis.inactive.slice(0,50).map(c=>{
+    const lv=allTimeLV[c.channel];
+    const tvCount=allTimeTotVis[c.channel]||0;
+    const tvDisp=tvCount>0?tvCount:'<span style="color:#484f58;">—</span>';
+    const lvDate=lv?lv.date:'<span style="color:#484f58;">Never visited</span>';
+    const lvSup=lv?lv.sup:'—';
+    return '<tr><td><strong>'+c.channel+'</strong></td><td>'+c.region+'</td>'+tdC(tvDisp)+tdC(lvDate)+'<td>'+lvSup+'</td></tr>';
+  }).join('')||emptyRow(5,'All assigned channels have been activated.');
+
+  // ─ UNASSIGNED / NO DEALER VISITS ─
+  const unassignedVisRows=cwV.filter(r=>!r.dealer);
+  const unCh={};unassignedVisRows.forEach(r=>{const ch=norm(r.channel);if(!unCh[ch])unCh[ch]={cnt:0,sup:r.supervisor||'—',reg:r.region||'—',city:r.city||'—'};unCh[ch].cnt++;});
+  document.getElementById('visUnassignedBadge').textContent=unassignedVisRows.length+' visits · '+Object.keys(unCh).length+' channels · no dealer attribution';
+  document.getElementById('visUnassignedHead').innerHTML=th(['Channel','Region','City','Supervisor','Visits (Period)']);
+  document.getElementById('visUnassignedBody').innerHTML=Object.entries(unCh).sort((a,b)=>b[1].cnt-a[1].cnt).map(([ch,d])=>'<tr><td><strong>'+ch+'</strong></td><td>'+d.reg+'</td><td>'+d.city+'</td><td>'+d.sup+'</td>'+tdC(d.cnt)+'</tr>').join('')||emptyRow(5,'No unassigned visits in selected period.');
 }
 
 // ============================================================
@@ -5490,8 +5674,57 @@ function renderMarket(){
 }
 
 // ============================================================
+// THEME SYSTEM — automatic, date-based
+// ============================================================
+const THEMES={
+  'founding-day':{headerBg:'#1a0505',accent:'#8b1a1a',label:'Founding Day',labelColor:'#c9a84c'},
+  'eid-fitr':{headerBg:'#020f07',accent:'#1d7a45',label:'Eid Al-Fitr',labelColor:'#c9a84c'},
+  'eid-adha':{headerBg:'#020f07',accent:'#1d7a45',label:'Eid Al-Adha',labelColor:'#c9a84c'},
+  'ramadan':{headerBg:'#030d1a',accent:'#1a6e3c',label:'Ramadan',labelColor:'#c9a84c'},
+  'mega-sale':{headerBg:'#0d0800',accent:'#b35a00',label:'Mega Sale Season',labelColor:'#e6921a'},
+  'summer':{headerBg:'#020a12',accent:'#1a7a9a',label:'Summer Season',labelColor:'#5bc0de'},
+  'back-to-school':{headerBg:'#020820',accent:'#1a44b8',label:'Back to School',labelColor:'#4da6ff'},
+  'national-day':{headerBg:'#010d03',accent:'#006622',label:'National Day Season',labelColor:'#00cc44'},
+  'white-friday':{headerBg:'#080808',accent:'#a0a0a0',label:'White Friday Season',labelColor:'#d0d0d0'},
+  'standard':{headerBg:'#010409',accent:'#1f6feb',label:'',labelColor:'#7d8590'}
+};
+
+function detectTheme(){
+  const now=new Date();const m=now.getMonth()+1;const d=now.getDate();
+  // Priority 3: specific event overrides
+  if(m===2&&d>=21&&d<=23)return 'founding-day';
+  if(m===3&&d>=18&&d<=22)return 'eid-fitr';
+  if(m===5&&d>=25&&d<=29)return 'eid-adha';
+  if(m===8&&d>=21&&d<=25)return 'back-to-school';
+  // Priority 2: seasonal windows
+  if((m===2&&d>=18)||(m===3&&d<=17))return 'ramadan';
+  if(m===4||m===5)return 'mega-sale';
+  if(m===9)return 'national-day';
+  if(m===11)return 'white-friday';
+  // Priority 1: long seasons
+  if(m>=6&&m<=8)return 'summer';
+  return 'standard';
+}
+
+function applyTheme(){
+  const key=detectTheme();
+  const th=THEMES[key]||THEMES['standard'];
+  let styleEl=document.getElementById('ist-theme-style');
+  if(!styleEl){styleEl=document.createElement('style');styleEl.id='ist-theme-style';document.head.appendChild(styleEl);}
+  styleEl.textContent=
+    '.header{background:'+th.headerBg+'!important;border-bottom-color:'+th.accent+'!important;}'+
+    '.tab-btn.active{color:'+th.accent+';border-bottom-color:'+th.accent+'!important;}';
+  const pill=document.getElementById('seasonPill');
+  if(pill){
+    if(th.label){pill.textContent=th.label;pill.style.color=th.labelColor;pill.style.display='';}
+    else{pill.style.display='none';}
+  }
+}
+
+// ============================================================
 // INITIALIZE
 // ============================================================
+applyTheme();
 initFilters();
 renderExec();
 </script>
