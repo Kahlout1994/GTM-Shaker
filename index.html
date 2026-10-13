@@ -155,6 +155,101 @@ tbody tr:hover{background:#1c2128;}
   .ar-not-act{background:#2a0d0d;}
   .ar-no-sale{background:#1c1500;}
   .ar-pointer{font-size:10px;color:#7d8590;text-align:right;padding:4px 0;}
+
+/* ── PHASE 2C THEME TOKENS ── */
+:root{
+  --ist-header-bg:#010409;
+  --ist-accent:#1f6feb;
+  --ist-accent-alpha:rgba(31,111,235,.12);
+  --ist-accent-border:rgba(31,111,235,.25);
+  --ist-chart-line:#1f6feb;
+  --ist-tab-active:#1f6feb;
+  --ist-sel-bg:rgba(31,111,235,.08);
+  --ist-sel-border:rgba(31,111,235,.22);
+  --ist-pill-text:#7d8590;
+}
+.header{background:var(--ist-header-bg);border-bottom-color:var(--ist-accent);}
+.tab-btn.active{color:var(--ist-tab-active);border-bottom-color:var(--ist-tab-active);}
+.fg select:focus{border-color:var(--ist-accent);box-shadow:0 0 0 2px var(--ist-accent-alpha);}
+
+/* ── EXEC LAYOUT ── */
+.exec-sel-bar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:7px 10px;background:#13181f;border-radius:8px;margin-bottom:10px;border:1px solid rgba(255,255,255,.055);}
+.sel-chip{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:10px;font-size:10px;font-weight:600;background:var(--ist-accent-alpha);color:var(--ist-accent);border:1px solid var(--ist-accent-border);cursor:pointer;user-select:none;}
+.sel-chip:hover{opacity:.8;}
+.exec-sel-clear-all{font-size:10px;color:#7d8590;background:none;border:none;cursor:pointer;padding:3px 6px;border-radius:5px;}
+.exec-sel-clear-all:hover{color:#e6edf3;background:rgba(255,255,255,.05);}
+.exec-kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:10px;}
+@media(max-width:1000px){.exec-kpi-row{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:640px){.exec-kpi-row{grid-template-columns:1fr 1fr;}}
+.exec-main-grid{display:grid;grid-template-columns:3fr 2fr;gap:10px;margin-bottom:10px;}
+.exec-secondary-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+@media(max-width:900px){.exec-main-grid,.exec-secondary-grid{grid-template-columns:1fr;}}
+
+/* ── EXEC CARD ── */
+.exec-card{background:#13181f;border-radius:10px;padding:14px 16px;border:1px solid rgba(255,255,255,.055);margin-bottom:10px;}
+.exec-card.no-mb{margin-bottom:0;}
+.exec-card-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;}
+.exec-card-title{font-size:10px;font-weight:700;color:#8b949e;text-transform:uppercase;letter-spacing:.6px;}
+.exec-card-hint{font-size:9px;color:#484f58;font-weight:400;}
+.exec-card-badge{font-size:10px;background:rgba(255,255,255,.04);color:#7d8590;padding:2px 8px;border-radius:8px;font-weight:600;}
+
+/* ── KPI V2 ── */
+.kpi-v2{background:#13181f;border-radius:10px;padding:13px 14px;border:1px solid rgba(255,255,255,.055);}
+.kpi-v2-lbl{font-size:9px;font-weight:700;color:#7d8590;text-transform:uppercase;letter-spacing:.6px;margin-bottom:7px;}
+.kpi-v2-val{font-size:22px;font-weight:800;color:#e6edf3;line-height:1;letter-spacing:-.3px;}
+.kpi-v2-sub{font-size:10px;color:#7d8590;margin-top:3px;}
+.kpi-v2-delta{font-size:10px;font-weight:700;margin-top:5px;}
+.kpi-v2-delta.up{color:#3fb950;}.kpi-v2-delta.down{color:#f85149;}.kpi-v2-delta.flat{color:#484f58;}
+.kpi-v2.kpi-accent{border-top:2px solid var(--ist-accent);}
+.kpi-v2.kpi-green{border-top:2px solid #3fb950;}
+.kpi-v2.kpi-amber{border-top:2px solid #d29922;}
+.kpi-v2.kpi-red{border-top:2px solid #f85149;}
+.kpi-v2.kpi-tgt-good{border-top:2px solid #3fb950;}
+.kpi-v2.kpi-tgt-ok{border-top:2px solid var(--ist-accent);}
+.kpi-v2.kpi-tgt-warn{border-top:2px solid #d29922;}
+.kpi-v2.kpi-tgt-crit{border-top:2px solid #f85149;}
+
+/* ── EXEC BARS ── */
+.exec-bar-row{display:flex;align-items:center;gap:8px;padding:5px 8px;border-radius:6px;cursor:pointer;transition:background .12s;margin-bottom:2px;}
+.exec-bar-row:hover{background:rgba(255,255,255,.04);}
+.exec-bar-row.selected{background:var(--ist-sel-bg);outline:1px solid var(--ist-sel-border);}
+.exec-bar-lbl{font-size:10px;color:#8b949e;width:78px;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.exec-bar-track{flex:1;height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;min-width:20px;}
+.exec-bar-fill{height:5px;border-radius:3px;background:var(--ist-accent);transition:width .25s;}
+.exec-bar-fill.f-muted{background:#484f58;}
+.exec-bar-val{font-size:10px;font-weight:600;color:#c9d1d9;width:36px;text-align:right;flex-shrink:0;}
+.exec-bar-sub{font-size:9px;color:#6e7681;width:22px;text-align:right;flex-shrink:0;}
+
+/* ── TREND CHART ── */
+.exec-trend-wrap{position:relative;}
+.exec-trend-svg{width:100%;display:block;overflow:visible;}
+.exec-trend-tip{position:absolute;background:#1c2128;border:1px solid rgba(255,255,255,.1);border-radius:5px;padding:4px 9px;font-size:10px;color:#e6edf3;pointer-events:none;display:none;white-space:nowrap;z-index:10;}
+
+/* ── ACTION REQUIRED V2 ── */
+.exec-ar-wrap{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:700px){.exec-ar-wrap{grid-template-columns:1fr;}}
+.exec-ar-group-title{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.exec-ar-group-title.t-na{color:#f85149;}
+.exec-ar-group-title.t-ns{color:#d29922;}
+.exec-ar-row{display:flex;align-items:center;gap:7px;padding:6px 9px;border-radius:6px;margin-bottom:3px;cursor:pointer;transition:background .12s;}
+.exec-ar-row.na{background:rgba(248,81,73,.07);}.exec-ar-row.na:hover{background:rgba(248,81,73,.14);}
+.exec-ar-row.ns{background:rgba(210,153,34,.07);}.exec-ar-row.ns:hover{background:rgba(210,153,34,.14);}
+.exec-ar-badge{font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px;flex-shrink:0;}
+.exec-ar-badge.b-na{background:rgba(248,81,73,.2);color:#f85149;}
+.exec-ar-badge.b-ns{background:rgba(210,153,34,.2);color:#d29922;}
+.exec-ar-ch{font-size:11px;color:#c9d1d9;font-weight:600;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.exec-ar-meta{font-size:9px;color:#6e7681;flex-shrink:0;}
+.exec-ar-drill{font-size:9px;color:#484f58;flex-shrink:0;}
+.exec-ar-footer{font-size:9px;color:#484f58;margin-top:8px;text-align:right;}
+
+/* ── DEEP DIVE ── */
+.exec-dd-close{font-size:10px;color:#6e7681;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:2px 9px;cursor:pointer;}
+.exec-dd-close:hover{color:#e6edf3;background:rgba(255,255,255,.07);}
+.exec-dd-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;}
+.exec-dd-row{display:flex;justify-content:space-between;align-items:center;padding:5px 8px;border-radius:4px;font-size:11px;margin-bottom:2px;}
+.exec-dd-row:nth-child(odd){background:rgba(255,255,255,.025);}
+.exec-dd-key{color:#7d8590;}
+.exec-dd-val{color:#e6edf3;font-weight:600;}
 </style>
 </head>
 <body>
@@ -179,7 +274,7 @@ tbody tr:hover{background:#1c2128;}
   <div class="fg"><label>Region</label><select id="fRegion" onchange="onRegionChange()"><option value="">All Regions</option></select></div>
   <div class="fg"><label>City</label><select id="fCity" onchange="applyFilters()"><option value="">All Cities</option></select></div>
   <div class="filter-sep"></div>
-  <div class="fg"><label>Supervisor</label><select id="fUser" onchange="applyFilters()"><option value="">All</option></select></div>
+  <div class="fg"><label>PIC</label><select id="fUser" onchange="applyFilters()"><option value="">All</option></select></div>
   <div class="fg"><label>Channel</label><select id="fChannel" onchange="applyFilters()"><option value="">All Channels</option></select></div>
   <div class="filter-sep"></div>
   <div class="fg"><label>Month</label><select id="fMonth" onchange="applyFilters()"><option value="">All Months</option></select></div>
@@ -222,40 +317,59 @@ tbody tr:hover{background:#1c2128;}
 <!-- TAB 1: EXECUTIVE OVERVIEW -->
 <!-- ═══════════════════════════════════════════════════════ -->
 <div id="tab-exec" class="tab-content active">
-  <div class="section">
-    <div class="section-hdr">
-      <div>
-        <div class="section-title">Key Performance Indicators</div>
-        <div class="section-note" id="execPeriodNote"></div>
+  <!-- Selection chips bar — shows active filters, hidden when nothing selected -->
+  <div class="exec-sel-bar" id="execSelBar" style="display:none;"></div>
+  <!-- 5 KPI cards -->
+  <div class="exec-kpi-row" id="execKpis"></div>
+  <!-- Main grid: trend chart (left 3fr) + dealer bars (right 2fr) -->
+  <div class="exec-main-grid">
+    <div class="exec-card no-mb">
+      <div class="exec-card-hdr">
+        <span class="exec-card-title">Weekly sellout trend</span>
+        <span class="exec-card-hint">click week to filter</span>
       </div>
-      <span class="section-badge" id="execBadge"></span>
+      <div class="exec-trend-wrap" id="execTrendWrap"></div>
     </div>
-    <div class="kpi-grid" id="execKpis"></div>
-  </div>
-  <div class="section" id="dealerPerfSection">
-    <div class="section-hdr">
-      <div class="section-title">Dealer Performance</div>
-      <span class="section-badge" id="dealerPerfBadge"></span>
+    <div class="exec-card no-mb">
+      <div class="exec-card-hdr">
+        <span class="exec-card-title">Dealer performance</span>
+        <span class="exec-card-hint">click to filter</span>
+      </div>
+      <div id="execDealerBars"></div>
     </div>
-    <div class="tbl-wrap"><table><thead id="dealerPerfHead"></thead><tbody id="dealerPerfBody"></tbody></table></div>
   </div>
-  <div class="section">
-    <div class="section-hdr"><div class="section-title">Performance by Region</div><span class="section-badge">CW = Current Week &nbsp;|&nbsp; PW = Previous Week</span></div>
-    <div class="tbl-wrap"><table><thead id="regSumHead"></thead><tbody id="regSumBody"></tbody></table></div>
-  </div>
-  <div class="section" id="picTargetSection">
-    <div class="section-hdr">
-      <div class="section-title">PIC Target Performance</div>
-      <span class="section-badge" id="picTargetBadge"></span>
+  <!-- Secondary grid: region (left) + PIC (right) -->
+  <div class="exec-secondary-grid">
+    <div class="exec-card no-mb">
+      <div class="exec-card-hdr">
+        <span class="exec-card-title">Region performance</span>
+        <span class="exec-card-hint">click to filter</span>
+      </div>
+      <div id="execRegionBars"></div>
     </div>
-    <div class="tbl-wrap"><table><thead id="picTargetHead"></thead><tbody id="picTargetBody"></tbody></table></div>
-  </div>
-  <div class="section" id="actionReqSection">
-    <div class="section-hdr">
-      <div class="section-title">Action Required</div>
-      <span class="section-badge" id="actionReqBadge"></span>
+    <div class="exec-card no-mb">
+      <div class="exec-card-hdr">
+        <span class="exec-card-title">PIC performance</span>
+        <span class="exec-card-hint">click to filter</span>
+      </div>
+      <div id="execPicBars"></div>
     </div>
-    <div id="actionReqBody"></div>
+  </div>
+  <!-- Action Required — always visible -->
+  <div class="exec-card" id="execArSection">
+    <div class="exec-card-hdr">
+      <span class="exec-card-title">Action required</span>
+      <span class="exec-card-badge" id="execArBadge"></span>
+    </div>
+    <div id="execArBody"></div>
+  </div>
+  <!-- Dynamic Deep Dive — visible only when a selection is active -->
+  <div class="exec-card" id="execDeepDive" style="display:none;">
+    <div class="exec-card-hdr">
+      <span class="exec-card-title" id="execDdTitle"></span>
+      <button class="exec-dd-close" onclick="clearExecSelection()">&#x2715; clear</button>
+    </div>
+    <div class="exec-dd-grid" id="execDdBody"></div>
   </div>
 </div>
 
@@ -372,7 +486,7 @@ tbody tr:hover{background:#1c2128;}
 // ============================================================
 // ============================================================
 // EMBEDDED DATA — from Excel (extracted 2026-10-13)
-// Sellout: 1258 records | Visits: 2951 records | Channels: 192 | Dealers: 3
+// Sellout: 1260 records | Visits: 2951 records | Channels: 192 | Dealers: 3
 // ============================================================
 const RAW_SELLOUT=[{"email":"tadly37@gmail.com","supervisor":"Tamer","region":"Central","city":"Riyadh","channel":"Alsarawi","dealer":"Bin Hamoud","model":"NS182C","qty":1,"date":"2026-02-16","week":8,"category":"RAC","type":"Inverter","product":"Smart"},
 {"email":"tadly37@gmail.com","supervisor":"Tamer","region":"Central","city":"Riyadh","channel":"Raghedaltamyouz","dealer":"Bin Hamoud","model":"LB182C","qty":2,"date":"2026-02-16","week":8,"category":"RAC","type":"On Off","product":"Jet Cool LB"},
@@ -1631,7 +1745,9 @@ const RAW_SELLOUT=[{"email":"tadly37@gmail.com","supervisor":"Tamer","region":"C
 {"email":"ahmed.wael1877@gmail.com","supervisor":"Wael","region":"Eastern","city":"Dammam","channel":"SahmAlJaleed","dealer":"Bin Hamoud","model":"LH182C","qty":6,"date":"2026-10-11","week":41,"category":"RAC","type":"On Off","product":"Jet Cool LH"},
 {"email":"ahmed.wael1877@gmail.com","supervisor":"Wael","region":"Eastern","city":"Dammam","channel":"SahmAlJaleed","dealer":"Bin Hamoud","model":"LH242C","qty":2,"date":"2026-10-11","week":41,"category":"RAC","type":"On Off","product":"Jet Cool LH"},
 {"email":"ahmed.wael1877@gmail.com","supervisor":"Wael","region":"Eastern","city":"Dammam","channel":"KhotwaEstbakia","dealer":"Bin Hamoud","model":"APNQ55GT3M","qty":1,"date":"2026-10-11","week":41,"category":"CAC","type":"Inverter","product":"Floor Standing"},
-{"email":"ahmed.wael1877@gmail.com","supervisor":"Wael","region":"Eastern","city":"Dammam","channel":"KhotwaEstbakia","dealer":"Bin Hamoud","model":"LC242C","qty":1,"date":"2026-10-11","week":41,"category":"RAC","type":"On Off","product":"Jet Cool LC"}];
+{"email":"ahmed.wael1877@gmail.com","supervisor":"Wael","region":"Eastern","city":"Dammam","channel":"KhotwaEstbakia","dealer":"Bin Hamoud","model":"LC242C","qty":1,"date":"2026-10-11","week":41,"category":"RAC","type":"On Off","product":"Jet Cool LC"},
+{"email":"tadly37@gmail.com","supervisor":"Tamer","region":"Central","city":"Riyadh","channel":"Samahahighqualityproduct","dealer":"Bin Hamoud","model":"NS182C","qty":2,"date":"2026-10-13","week":42,"category":"RAC","type":"Inverter","product":"Smart"},
+{"email":"tadly37@gmail.com","supervisor":"Tamer","region":"Central","city":"Riyadh","channel":"DairatAlHadaf","dealer":"Bin Hamoud","model":"APNQ55GT3M","qty":10,"date":"2026-10-13","week":42,"category":"CAC","type":"Inverter","product":"Floor Standing"}];
 const RAW_VISITS=[{"email":"tadly37@gmail.com","supervisor":"Tamer","region":"Central","city":"Riyadh","channel":"DarRaihana","dealer":"Bin Hamoud","visitType":"Routine Visit","date":"2026-02-15","week":7},
 {"email":"tadly37@gmail.com","supervisor":"Tamer","region":"Central","city":"Riyadh","channel":"fahadalsabaey","dealer":"Bin Hamoud","visitType":"Routine Visit","date":"2026-02-15","week":7},
 {"email":"tadly37@gmail.com","supervisor":"Tamer","region":"Central","city":"Riyadh","channel":"Samahahighqualityproduct","dealer":"Bin Hamoud","visitType":"Routine Visit","date":"2026-02-15","week":7},
@@ -5098,20 +5214,14 @@ function renderExec(){
 
   const cwQty=cwSell.reduce((s,r)=>s+r.qty,0);
   const pwQty=pwSell.reduce((s,r)=>s+r.qty,0);
-  const allTimeQty=allTimeSell.reduce((s,r)=>s+r.qty,0);
   const cwVisCount=cwVis.length;
   const pwVisCount=pwVis.length;
 
   // WoW values
   const wowSPct=F.week?(pwQty>0?((cwQty-pwQty)/pwQty*100):null):null;
   const wowVPct=F.week?(pwVisCount>0?((cwVisCount-pwVisCount)/pwVisCount*100):null):null;
-  const wowSStr=wowSPct!==null?(wowSPct>=0?'+':'')+wowSPct.toFixed(1)+'%':(F.week?'New':'—');
-  const wowVStr=wowVPct!==null?(wowVPct>=0?'+':'')+wowVPct.toFixed(1)+'%':(F.week?'New':'—');
   const wowSCls=wowSPct===null?'flat':wowSPct>0?'up':'down';
   const wowVCls=wowVPct===null?'flat':wowVPct>0?'up':'down';
-  const wowSCard=wowSPct===null?'c-slate':wowSPct>0?'c-pos':'c-neg';
-  const wowVCard=wowVPct===null?'c-slate':wowVPct>0?'c-pos':'c-neg';
-  const upArrow='&#9650;',downArrow='&#9660;';
 
   // Conversion — assigned channels only (Channel_sellout_Ref)
   const cwVisCh=new Set(cwVis.map(v=>norm(v.channel)).filter(ch=>ASSIGNED_SET.has(ch)));
@@ -5128,76 +5238,62 @@ function renderExec(){
   const _mtdActual=_mtd?_mtd.actual:null;
   const _tAch=(_tgt!==null&&_tgt>0)?Math.round(_mtdActual/_tgt*100):null;
   const _tStat=_tAch===null?null:_tAch>=100?'Achieved':_tAch>=80?'On Track':_tAch>=60?'Behind':'Critical';
-  const _tCol=_tStat==='Achieved'?'c-green':_tStat==='On Track'?'c-blue':_tStat==='Behind'?'c-amber':_tStat==='Critical'?'c-red':'c-slate';
-  document.getElementById('execPeriodNote').textContent=(F.week?wkRange(F.week)+' · ':'')+(F.region||'All Regions');
-  document.getElementById('execBadge').textContent='Assigned Channels: '+act.universe;
 
-  // KPI: 5 primary management cards
+  // ── SELECTION BAR ──
+  renderExecSelBar();
+
+  // ── 5 KPI CARDS ──
+  const tgtTopCls=_dealerActive?'':_tAch===null?'':_tAch>=100?'kpi-tgt-good':_tAch>=80?'kpi-tgt-ok':_tAch>=60?'kpi-tgt-warn':'kpi-tgt-crit';
   document.getElementById('execKpis').innerHTML=`
-    <div class="kpi-card c-blue">
-      <div class="kpi-label">Total Sellout — ${wkLabel}</div>
-      <div class="kpi-value">${cwQty}</div>
-      <div class="kpi-cw-pw">
-        <span><strong>CW:</strong> ${cwQty}</span>
-        <span><strong>PW:</strong> ${pwQty}</span>
-      </div>
-      <div class="kpi-wow ${wowSCls}" style="margin-top:6px;font-size:11px;">${wowSPct!==null?(wowSPct>0?upArrow:wowSPct<0?downArrow:'→')+' '+wowSStr:'—'}&nbsp;WoW</div>
+    <div class="kpi-v2 kpi-accent">
+      <div class="kpi-v2-lbl">Sellout — ${wkLabel}</div>
+      <div class="kpi-v2-val">${cwQty.toLocaleString()}</div>
+      <div class="kpi-v2-delta ${wowSCls}">${wowSPct!==null?(wowSPct>0?'▲ ':'▼ ')+Math.abs(wowSPct).toFixed(1)+'% WoW':'—'}</div>
+      <div class="kpi-v2-sub">PW: ${pwQty.toLocaleString()}</div>
     </div>
-    <div class="kpi-card c-slate">
-      <div class="kpi-label">Total Visits — ${wkLabel}</div>
-      <div class="kpi-value">${cwVisCount}</div>
-      <div class="kpi-cw-pw">
-        <span><strong>CW:</strong> ${cwVisCount}</span>
-        <span><strong>PW:</strong> ${pwVisCount}</span>
-      </div>
-      <div class="kpi-wow ${wowVCls}" style="margin-top:6px;font-size:11px;">${wowVPct!==null?(wowVPct>0?upArrow:wowVPct<0?downArrow:'→')+' '+wowVStr:'—'}&nbsp;WoW</div>
+    <div class="kpi-v2 ${tgtTopCls}">
+      <div class="kpi-v2-lbl">Target achievement</div>
+      <div class="kpi-v2-val">${_dealerActive?'N/A':_tAch!==null?_tAch+'%':'—'}</div>
+      ${_dealerActive?'<div class="kpi-v2-sub" style="color:#484f58;">not split by dealer</div>':_tgt!=null?`<div class="kpi-v2-sub">${_mtdActual.toLocaleString()} / ${_tgt.toLocaleString()} MTD</div>`:'<div class="kpi-v2-sub">no target set</div>'}
     </div>
-    <div class="kpi-card c-green">
-      <div class="kpi-label">Active Channels</div>
-      <div class="kpi-value">${act.active.length} / ${act.universe}</div>
-      <div class="kpi-sub" style="font-size:16px;font-weight:800;color:#3fb950;margin-top:4px;">${pct(act.active.length,act.universe)}</div>
-      <div class="kpi-sub">${act.inactive.length} not activated</div>
+    <div class="kpi-v2">
+      <div class="kpi-v2-lbl">Visits — ${wkLabel}</div>
+      <div class="kpi-v2-val">${cwVisCount.toLocaleString()}</div>
+      <div class="kpi-v2-delta ${wowVCls}">${wowVPct!==null?(wowVPct>0?'▲ ':'▼ ')+Math.abs(wowVPct).toFixed(1)+'% WoW':'—'}</div>
+      <div class="kpi-v2-sub">PW: ${pwVisCount.toLocaleString()}</div>
     </div>
-    <div class="kpi-card c-blue">
-      <div class="kpi-label">Conversion Rate</div>
-      <div class="kpi-value">${cwVisCh.size>0?convPct+'%':'—'}</div>
-      <div class="kpi-sub">${converted} sold / ${cwVisCh.size} visited assigned</div>
+    <div class="kpi-v2 kpi-green">
+      <div class="kpi-v2-lbl">Activation</div>
+      <div class="kpi-v2-val">${act.active.length} / ${act.universe}</div>
+      <div class="kpi-v2-sub">${pct(act.active.length,act.universe)} active</div>
+      <div class="kpi-v2-sub" style="color:#f85149;">${act.inactive.length} not activated</div>
     </div>
-    <div class="kpi-card ${_dealerActive?'c-slate':_tgt!==null?_tCol:'c-slate'}">
-      <div class="kpi-label">Target Achievement</div>
-      <div class="kpi-value" style="${_dealerActive?'font-size:14px;color:#484f58;':''}">${_dealerActive?'N/A':_tAch!==null?_tAch+'%':'No Target'}</div>
-      ${_dealerActive?'<div class="kpi-sub" style="color:#484f58;">Target not split by Dealer</div>':_tgt!==null?`<div class="kpi-sub">Target: ${_tgt.toLocaleString()}</div><div class="kpi-sub">MTD Actual: ${_mtdActual.toLocaleString()}</div>`:''}
+    <div class="kpi-v2 kpi-accent">
+      <div class="kpi-v2-lbl">Conversion</div>
+      <div class="kpi-v2-val">${cwVisCh.size>0?convPct+'%':'—'}</div>
+      <div class="kpi-v2-sub">${converted} sold / ${cwVisCh.size} visited assigned</div>
     </div>
   `;
 
-  // REGION SUMMARY TABLE — based on assigned channels (Channel_sellout_Ref)
-  const allRegions=F.region?[F.region]:[...new Set(NORM_CHANNEL_SELLOUT_REF.map(c=>c.region))].sort();
-  document.getElementById('regSumHead').innerHTML=th(['Region','Assigned','Active','Not Act.','Rate %','Newly Act.','CW Sellout','PW Sellout','WoW %','CW Visits','Conv %']);
-  let rb='';
-  allRegions.forEach(reg=>{
-    const ru=NORM_CHANNEL_SELLOUT_REF.filter(c=>c.region===reg);
-    const rh=RAW_SELLOUT.filter(r=>r.region===reg&&r.qty>0&&r.week<=act.maxWk&&ASSIGNED_SET.has(norm(r.channel)));
-    const rfw={};rh.forEach(r=>{const ch=norm(r.channel);if(!rfw[ch]||r.week<rfw[ch])rfw[ch]=r.week;});
-    const ra=ru.filter(c=>rfw[c.channel]!==undefined).length;
-    const ri=ru.length-ra;
-    const rn=act.selWk!==null?ru.filter(c=>rfw[c.channel]===act.selWk).length:'—';
-    const rate=ru.length>0?Math.round(ra/ru.length*100):0;
-    const rcs=RAW_SELLOUT.filter(r=>r.region===reg&&(F.week?r.week===F.week:true)&&(F.city?r.city===F.city:true)&&(F.user?r.supervisor===F.user:true)&&(F.category?r.category===F.category:true)&&(F.type?r.type===F.type:true)).reduce((s,r)=>s+r.qty,0);
-    const rps=F.week?RAW_SELLOUT.filter(r=>r.region===reg&&r.week===F.week-1&&(F.city?r.city===F.city:true)&&(F.user?r.supervisor===F.user:true)&&(F.category?r.category===F.category:true)&&(F.type?r.type===F.type:true)).reduce((s,r)=>s+r.qty,0):0;
-    const rv=RAW_VISITS.filter(r=>r.region===reg&&(F.week?r.week===F.week:true)&&(F.city?r.city===F.city:true)&&(F.user?r.supervisor===F.user:true)).length;
-    // Conversion: assigned channels only
-    const rVisCh=new Set(RAW_VISITS.filter(r=>r.region===reg&&(F.week?r.week===F.week:true)&&(F.city?r.city===F.city:true)&&(F.user?r.supervisor===F.user:true)).map(r=>norm(r.channel)).filter(ch=>ASSIGNED_SET.has(ch)));
-    const rSoldCh=new Set(RAW_SELLOUT.filter(r=>r.region===reg&&r.qty>0&&(F.week?r.week===F.week:true)&&(F.city?r.city===F.city:true)&&(F.user?r.supervisor===F.user:true)&&(F.category?r.category===F.category:true)&&(F.type?r.type===F.type:true)).map(r=>norm(r.channel)).filter(ch=>ASSIGNED_SET.has(ch)));
-    const rConv=rVisCh.size>0?Math.round([...rSoldCh].filter(c=>rVisCh.has(c)).length/rVisCh.size*100)+'%':'—';
-    rb+='<tr><td><strong>'+reg+'</strong></td>'+tdR(ru.length)+'<td class="num" style="color:#16a34a;font-weight:700;">'+ra+'</td><td class="num" style="color:#dc2626;font-weight:700;">'+ri+'</td><td class="num"><strong>'+rate+'%</strong></td>'+tdC(rn)+tdR(rcs)+tdR(F.week?rps:'—')+'<td class="num">'+trendHtml(rcs,rps,true)+'</td>'+tdR(rv)+'<td class="num">'+rConv+'</td></tr>';
-  });
-  const totCw=cwSell.reduce((s,r)=>s+r.qty,0);const totPw=pwSell.reduce((s,r)=>s+r.qty,0);
-  rb+='<tr class="total-row"><td>TOTAL</td>'+tdR(act.universe)+'<td class="num" style="color:#16a34a;">'+act.active.length+'</td><td class="num" style="color:#dc2626;">'+act.inactive.length+'</td><td class="num">'+pct(act.active.length,act.universe)+'</td>'+tdC(act.selWk!==null?act.newlyActivated.length:'—')+tdR(totCw)+tdR(F.week?totPw:'—')+'<td class="num">'+trendHtml(totCw,totPw,true)+'</td>'+tdR(cwVisCount)+'<td class="num">'+pct(converted,cwVisCh.size)+'</td></tr>';
-  document.getElementById('regSumBody').innerHTML=rb||emptyRow(11);
+  // ── WEEKLY TREND CHART ──
+  {
+    const wkMap={};
+    allTimeSell.forEach(r=>{if(!wkMap[r.week])wkMap[r.week]=0;wkMap[r.week]+=r.qty;});
+    const trendData=[...new Set(allTimeSell.map(r=>r.week))].sort((a,b)=>a-b).map(w=>({week:w,qty:wkMap[w]}));
+    const wrap=document.getElementById('execTrendWrap');
+    if(wrap){wrap.innerHTML=buildTrendChartSvg(trendData,F.week);attachTrendChartEvents();}
+  }
 
-  renderPicTargetTable();
-  renderDealerPerf(act);
+  // ── DEALER / REGION / PIC BARS ──
+  renderExecDealerBars();
+  renderExecRegionBars(act,cwSell,cwVis);
+  renderExecPicBars(cwSell,cwVis);
+
+  // ── ACTION REQUIRED ──
   renderActionRequired(act,cwSell,cwVis);
+
+  // ── DEEP DIVE (if active selection) ──
+  if(EXEC_DD)renderExecDeepDivePanel();
 }
 
 function renderChannelStatusTable(act,cwSell,cwVis){
@@ -5297,7 +5393,7 @@ function renderDealerPerf(act){
 }
 
 function renderActionRequired(act,cwSell,cwVis){
-  const sect=document.getElementById('actionReqSection');
+  const sect=document.getElementById('execArSection');
   if(!sect)return;
 
   const cwSByCh={};cwSell.forEach(r=>{const ch=norm(r.channel);cwSByCh[ch]=(cwSByCh[ch]||0)+r.qty;});
@@ -5312,24 +5408,51 @@ function renderActionRequired(act,cwSell,cwVis){
 
   const totalNotAct=act.inactive.length;
   const totalNoSale=Object.entries(cwVByCh).filter(([ch])=>ASSIGNED_SET.has(ch)&&!(cwSByCh[ch]>0)).length;
+  const totalBadge=totalNotAct+totalNoSale;
 
-  document.getElementById('actionReqBadge').textContent=totalNotAct+' not activated · '+totalNoSale+' visited no sale';
+  const badge=document.getElementById('execArBadge');
+  if(badge)badge.textContent=totalBadge>0?totalBadge+' items':'All clear';
+
+  // Build channel reference lookup for dealer info
+  const chRef={};NORM_CHANNEL_SELLOUT_REF.forEach(c=>{chRef[c.channel]={region:c.region,dealer:c.dealer};});
 
   let html='';
   if(!notActRows.length&&!visitedNoSale.length){
-    html='<div class="all-good" style="padding:14px;">No critical actions — all assigned channels active and converting this period</div>';
+    html='<div class="exec-ar-wrap"><div style="padding:12px 0;color:#7d8590;font-size:12px;">No critical actions — all assigned channels active and converting this period</div></div>';
   } else {
-    notActRows.forEach(c=>{
-      html+='<div class="ar-row ar-not-act"><span class="badge b-inactive" style="flex-shrink:0;">Not Activated</span><span style="font-size:12px;color:#c9d1d9;flex:1;"><strong>'+c.channel+'</strong> — '+c.region+'</span></div>';
-    });
-    visitedNoSale.forEach(([ch,cnt])=>{
-      html+='<div class="ar-row ar-no-sale"><span class="badge b-nosale" style="flex-shrink:0;">Visited, No Sale</span><span style="font-size:12px;color:#c9d1d9;flex:1;"><strong>'+ch+'</strong> — '+cnt+' visit'+(cnt>1?'s':'')+'</span></div>';
-    });
+    html='<div class="exec-ar-wrap">';
+    if(notActRows.length){
+      html+='<div class="exec-ar-group-title">Not Activated</div>';
+      notActRows.forEach(c=>{
+        const info=chRef[c.channel]||{};
+        const esc=s=>(s||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+        html+=`<div class="exec-ar-row na" onclick="execArClick('${esc(c.channel)}','${esc(info.region||c.region||'')}','${esc(info.dealer||'')}')">
+          <span class="exec-ar-badge b-na">Not Activated</span>
+          <span class="exec-ar-ch">${c.channel}</span>
+          <span class="exec-ar-meta">${c.region||''}${info.dealer?' · '+info.dealer:''}</span>
+          <span class="exec-ar-drill">&#203A;</span>
+        </div>`;
+      });
+    }
+    if(visitedNoSale.length){
+      html+='<div class="exec-ar-group-title">Visited — No Sale</div>';
+      visitedNoSale.forEach(([ch,cnt])=>{
+        const info=chRef[ch]||{};
+        const esc=s=>(s||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+        html+=`<div class="exec-ar-row ns" onclick="execArClick('${esc(ch)}','${esc(info.region||'')}','${esc(info.dealer||'')}')">
+          <span class="exec-ar-badge b-ns">Visited, No Sale</span>
+          <span class="exec-ar-ch">${ch}</span>
+          <span class="exec-ar-meta">${info.region||''}${info.dealer?' · '+info.dealer:''} · ${cnt} visit${cnt>1?'s':''}</span>
+          <span class="exec-ar-drill">&#203A;</span>
+        </div>`;
+      });
+    }
     const shown=notActRows.length+visitedNoSale.length;
     const total=totalNotAct+totalNoSale;
-    if(total>shown)html+='<div class="ar-pointer">+'+(total-shown)+' more — full detail in Visits &amp; Activity tab</div>';
+    if(total>shown)html+=`<div class="exec-ar-footer">+${total-shown} more — full detail in Visits &amp; Activity tab</div>`;
+    html+='</div>';
   }
-  document.getElementById('actionReqBody').innerHTML=html;
+  document.getElementById('execArBody').innerHTML=html;
 }
 
 // ============================================================
@@ -5689,6 +5812,201 @@ function renderMarket(){
 }
 
 // ============================================================
+// PHASE 2C — EXECUTIVE INTERACTIVE STATE + HELPERS
+// ============================================================
+let EXEC_DD=null;
+let _execChips=[];
+let _EXEC_DEALER_LIST=[];
+let _EXEC_REGION_LIST=[];
+let _EXEC_PIC_LIST=[];
+
+function hexToRgbStr(hex){const r=parseInt(hex.slice(1,3),16);const g=parseInt(hex.slice(3,5),16);const b=parseInt(hex.slice(5,7),16);return r+','+g+','+b;}
+
+function setWeekFilter(wk){
+  F.week=wk;const el=document.getElementById('fWeek');if(el)el.value=wk||'';
+  invalidateCache();renderExec();renderSellout();renderVisits();updateHeader();
+}
+function setDealerFilter(dealer){
+  F.dealer=dealer;const el=document.getElementById('fDealer');if(el)el.value=dealer||'';
+  invalidateCache();renderExec();renderSellout();renderVisits();updateHeader();
+}
+function setRegionFilter(region){
+  F.region=region;const el=document.getElementById('fRegion');if(el)el.value=region||'';
+  if(region)populateCityDropdown(region);else populateCityDropdown(null);
+  invalidateCache();renderExec();renderSellout();renderVisits();updateHeader();
+}
+function setPicFilter(user){
+  F.user=user;const el=document.getElementById('fUser');if(el)el.value=user||'';
+  invalidateCache();renderExec();renderSellout();renderVisits();updateHeader();
+}
+function execChipClear(i){if(_execChips[i])_execChips[i]();}
+function clearAllExecFilters(){
+  F.dealer=null;F.region=null;F.user=null;F.week=null;
+  ['fDealer','fRegion','fUser','fWeek'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  populateCityDropdown(null);
+  EXEC_DD=null;
+  invalidateCache();renderExec();renderSellout();renderVisits();updateHeader();
+}
+function execClickDealer(i){const d=_EXEC_DEALER_LIST[i];if(!d)return;setDealerFilter(F.dealer===d?null:d);}
+function execClickRegion(i){const r=_EXEC_REGION_LIST[i];if(!r)return;setRegionFilter(F.region===r?null:r);}
+function execClickPic(i){const p=_EXEC_PIC_LIST[i];if(!p)return;setPicFilter(F.user===p?null:p);}
+function execArClick(ch,region,dealer){EXEC_DD={type:'channel',name:ch,region:region,dealer:dealer};renderExecDeepDivePanel();}
+function clearExecSelection(){EXEC_DD=null;const p=document.getElementById('execDeepDive');if(p)p.style.display='none';}
+
+function renderExecSelBar(){
+  const bar=document.getElementById('execSelBar');if(!bar)return;
+  const chips=[];
+  if(F.week)chips.push(['W'+F.week,()=>setWeekFilter(null)]);
+  if(F.dealer)chips.push(['Dealer: '+F.dealer,()=>setDealerFilter(null)]);
+  if(F.region)chips.push(['Region: '+F.region,()=>setRegionFilter(null)]);
+  if(F.user)chips.push(['PIC: '+F.user,()=>setPicFilter(null)]);
+  if(!chips.length){bar.style.display='none';return;}
+  bar.style.display='flex';
+  _execChips=chips.map(c=>c[1]);
+  bar.innerHTML=chips.map((c,i)=>`<span class="sel-chip" onclick="execChipClear(${i})">${c[0]} <span>&#x00D7;</span></span>`).join('')
+    +(chips.length>1?`<button class="exec-sel-clear-all" onclick="clearAllExecFilters()">Clear all</button>`:'');
+}
+
+function buildTrendChartSvg(data,selWk){
+  if(!data||!data.length)return'<div style="color:#484f58;font-size:11px;padding:30px;text-align:center;">No trend data</div>';
+  const W=500,H=110,pt=10,pr=8,pb=24,pl=36;
+  const cw=W-pl-pr,ch=H-pt-pb;
+  const vals=data.map(d=>d.qty);
+  const minV=Math.min(...vals),maxV=Math.max(...vals);
+  const rng=Math.max(maxV-minV,1);
+  const n=data.length;
+  const xs=i=>pl+i/(n>1?n-1:1)*cw;
+  const ys=v=>pt+ch-(v-minV)/rng*ch;
+  const linePts=data.map((d,i)=>(i===0?'M':'L')+xs(i).toFixed(1)+','+ys(d.qty).toFixed(1));
+  const linePath=linePts.join(' ');
+  const areaPath=linePath+' L'+xs(n-1).toFixed(1)+','+(pt+ch)+' L'+xs(0).toFixed(1)+','+(pt+ch)+' Z';
+  const step=Math.max(1,Math.ceil(n/8));
+  const xlbls=data.map((d,i)=>(i%step===0||i===n-1)?`<text x="${xs(i).toFixed(1)}" y="${H-6}" text-anchor="middle" style="font-size:7.5px;fill:#484f58;font-family:sans-serif;">W${d.week}</text>`:'').join('');
+  const yMid=Math.round(minV+rng/2);
+  const ylbls=[{v:minV},{v:yMid},{v:maxV}].map(o=>`<text x="${pl-4}" y="${(ys(o.v)+3).toFixed(1)}" text-anchor="end" style="font-size:7px;fill:#484f58;font-family:sans-serif;">${o.v}</text>`).join('');
+  const vlines=data.map((d,i)=>selWk===d.week?`<line x1="${xs(i).toFixed(1)}" y1="${pt}" x2="${xs(i).toFixed(1)}" y2="${pt+ch}" stroke="var(--ist-accent)" stroke-width="1" stroke-dasharray="3,2" opacity=".5"/>`:'').join('');
+  const pts=data.map((d,i)=>{const isSel=selWk===d.week;return`<circle cx="${xs(i).toFixed(1)}" cy="${ys(d.qty).toFixed(1)}" r="${isSel?5:2.5}" style="fill:${isSel?'var(--ist-accent)':'#13181f'};stroke:var(--ist-accent);stroke-width:${isSel?0:1.5};"/>`;}).join('');
+  const hits=data.map((d,i)=>`<rect x="${(xs(i)-11).toFixed(1)}" y="${pt}" width="22" height="${ch}" fill="transparent" class="trend-hit" data-wk="${d.week}" data-qty="${d.qty}" style="cursor:pointer;"/>`).join('');
+  return`<svg viewBox="0 0 ${W} ${H}" class="exec-trend-svg" id="execTrendSvg"><defs><linearGradient id="execGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--ist-accent)" stop-opacity=".2"/><stop offset="100%" stop-color="var(--ist-accent)" stop-opacity=".01"/></linearGradient></defs>${ylbls}${vlines}<path d="${areaPath}" fill="url(#execGrad)"/><path d="${linePath}" fill="none" stroke="var(--ist-accent)" stroke-width="1.5" stroke-linejoin="round"/>${hits}${xlbls}${pts}</svg><div class="exec-trend-tip" id="execTrendTip"></div>`;
+}
+
+function attachTrendChartEvents(){
+  const svg=document.getElementById('execTrendSvg');
+  const tip=document.getElementById('execTrendTip');
+  if(!svg||!tip)return;
+  const wrap=svg.parentElement;
+  svg.querySelectorAll('.trend-hit').forEach(el=>{
+    el.addEventListener('click',()=>{const wk=parseInt(el.dataset.wk);setWeekFilter(F.week===wk?null:wk);});
+    el.addEventListener('mouseenter',e=>{
+      const wrect=wrap.getBoundingClientRect();
+      tip.textContent='W'+el.dataset.wk+': '+parseInt(el.dataset.qty).toLocaleString()+' units';
+      tip.style.display='block';
+      tip.style.left=Math.min(e.clientX-wrect.left+8,wrect.width-130)+'px';
+      tip.style.top=Math.max(e.clientY-wrect.top-32,0)+'px';
+    });
+    el.addEventListener('mouseleave',()=>{tip.style.display='none';});
+  });
+}
+
+function renderExecDealerBars(){
+  const cont=document.getElementById('execDealerBars');if(!cont)return;
+  if(!RAW_DEALER_REF||!RAW_DEALER_REF.length){cont.innerHTML='<div style="color:#484f58;font-size:11px;padding:10px;">No dealer data</div>';return;}
+  const dealerSell={};fSell().forEach(r=>{if(r.dealer)dealerSell[r.dealer]=(dealerSell[r.dealer]||0)+r.qty;});
+  const activeCum={};
+  RAW_SELLOUT.filter(r=>r.qty>0).forEach(r=>{if(r.dealer){if(!activeCum[r.dealer])activeCum[r.dealer]=new Set();activeCum[r.dealer].add(norm(r.channel));}});
+  const assignedBy={};
+  NORM_CHANNEL_SELLOUT_REF.forEach(c=>{if(c.dealer){if(!assignedBy[c.dealer])assignedBy[c.dealer]=[];assignedBy[c.dealer].push(c.channel);}});
+  const rows=RAW_DEALER_REF.map(d=>{
+    const dl=d.dealer;
+    const sell=dealerSell[dl]||0;
+    const assigned=(assignedBy[dl]||[]).length;
+    const active=activeCum[dl]?[...activeCum[dl]].filter(ch=>(assignedBy[dl]||[]).includes(ch)).length:0;
+    return{name:dl,sell,assigned,active};
+  }).sort((a,b)=>b.sell-a.sell);
+  _EXEC_DEALER_LIST=rows.map(r=>r.name);
+  const maxSell=Math.max(...rows.map(r=>r.sell),1);
+  cont.innerHTML=rows.map((r,i)=>{
+    const sel=F.dealer===r.name;
+    const pct2=Math.round(r.sell/maxSell*100);
+    return`<div class="exec-bar-row${sel?' selected':''}" onclick="execClickDealer(${i})"><span class="exec-bar-lbl" title="${r.name}">${r.name}</span><div class="exec-bar-track"><div class="exec-bar-fill${r.sell===0?' f-muted':''}" style="width:${pct2}%"></div></div><span class="exec-bar-val">${r.sell>0?r.sell.toLocaleString():'—'}</span><span class="exec-bar-sub">${r.active?r.active+'a':'—'}</span></div>`;
+  }).join('');
+}
+
+function renderExecRegionBars(act,cwSell,cwVis){
+  const cont=document.getElementById('execRegionBars');if(!cont)return;
+  const regions=[...new Set(NORM_CHANNEL_SELLOUT_REF.map(c=>c.region))].sort();
+  const sellByReg={};cwSell.forEach(r=>{sellByReg[r.region]=(sellByReg[r.region]||0)+r.qty;});
+  const visByReg={};cwVis.forEach(r=>{visByReg[r.region]=(visByReg[r.region]||0)+1;});
+  _EXEC_REGION_LIST=regions;
+  const maxSell=Math.max(...regions.map(r=>sellByReg[r]||0),1);
+  cont.innerHTML=regions.map((reg,i)=>{
+    const sel=F.region===reg;
+    const sell=sellByReg[reg]||0;
+    const vis=visByReg[reg]||0;
+    const pct2=Math.round(sell/maxSell*100);
+    return`<div class="exec-bar-row${sel?' selected':''}" onclick="execClickRegion(${i})"><span class="exec-bar-lbl">${reg}</span><div class="exec-bar-track"><div class="exec-bar-fill" style="width:${pct2}%"></div></div><span class="exec-bar-val">${sell>0?sell.toLocaleString():'—'}</span><span class="exec-bar-sub">${vis?vis+'v':'—'}</span></div>`;
+  }).join('');
+}
+
+function renderExecPicBars(cwSell,cwVis){
+  const cont=document.getElementById('execPicBars');if(!cont)return;
+  const sellByPic={};cwSell.forEach(r=>{if(r.supervisor)sellByPic[r.supervisor]=(sellByPic[r.supervisor]||0)+r.qty;});
+  const visByPic={};cwVis.forEach(r=>{if(r.supervisor)visByPic[r.supervisor]=(visByPic[r.supervisor]||0)+1;});
+  const pics=[...new Set([...Object.keys(sellByPic),...Object.keys(visByPic)])].sort();
+  if(!pics.length){cont.innerHTML='<div style="color:#484f58;font-size:11px;padding:10px;">No PIC data</div>';return;}
+  _EXEC_PIC_LIST=pics;
+  const maxSell=Math.max(...pics.map(p=>sellByPic[p]||0),1);
+  cont.innerHTML=pics.map((p,i)=>{
+    const sel=F.user===p;
+    const sell=sellByPic[p]||0;
+    const vis=visByPic[p]||0;
+    const pct2=Math.round(sell/maxSell*100);
+    return`<div class="exec-bar-row${sel?' selected':''}" onclick="execClickPic(${i})"><span class="exec-bar-lbl" title="${p}">${p}</span><div class="exec-bar-track"><div class="exec-bar-fill" style="width:${pct2}%"></div></div><span class="exec-bar-val">${sell>0?sell.toLocaleString():'—'}</span><span class="exec-bar-sub">${vis?vis+'v':'—'}</span></div>`;
+  }).join('');
+}
+
+function renderExecDeepDivePanel(){
+  if(!EXEC_DD){clearExecSelection();return;}
+  const panel=document.getElementById('execDeepDive');
+  const titleEl=document.getElementById('execDdTitle');
+  const bodyEl=document.getElementById('execDdBody');
+  if(!panel||!titleEl||!bodyEl)return;
+  panel.style.display='';
+  titleEl.textContent=(EXEC_DD.type.charAt(0).toUpperCase()+EXEC_DD.type.slice(1))+': '+EXEC_DD.name;
+  let rows=[];
+  if(EXEC_DD.type==='channel'){
+    const chn=norm(EXEC_DD.name);
+    const ref=NORM_CHANNEL_SELLOUT_REF.find(c=>c.channel===chn)||{};
+    const periodSell=fSell().filter(r=>norm(r.channel)===chn).reduce((s,r)=>s+r.qty,0);
+    const periodVis=fVis().filter(r=>norm(r.channel)===chn).length;
+    const allSellCh=RAW_SELLOUT.filter(r=>norm(r.channel)===chn&&r.qty>0);
+    const allVisCh=RAW_VISITS.filter(r=>norm(r.channel)===chn);
+    const isAct=allSellCh.length>0;
+    const lastSaleWk=allSellCh.length?Math.max(...allSellCh.map(r=>r.week)):null;
+    const lastVisWk=allVisCh.length?Math.max(...allVisCh.map(r=>r.week)):null;
+    const picName=allSellCh[0]&&allSellCh[0].supervisor?allSellCh[0].supervisor:allVisCh[0]&&allVisCh[0].supervisor?allVisCh[0].supervisor:'—';
+    rows=[['Dealer',ref.dealer||EXEC_DD.dealer||'—'],['Region',ref.region||EXEC_DD.region||'—'],['PIC',picName],['Period sellout',periodSell>0?periodSell.toLocaleString():'0'],['Period visits',periodVis||'0'],['Status',isAct?'Active':'Not activated'],['Last sale',lastSaleWk?'W'+lastSaleWk:'—'],['Last visit',lastVisWk?'W'+lastVisWk:'—']];
+  }else if(EXEC_DD.type==='dealer'){
+    const periodSell=fSell().filter(r=>r.dealer===EXEC_DD.name).reduce((s,r)=>s+r.qty,0);
+    const periodVis=fVis().filter(r=>r.dealer===EXEC_DD.name).length;
+    const assigned=NORM_CHANNEL_SELLOUT_REF.filter(c=>c.dealer===EXEC_DD.name).length;
+    const activeCh=new Set(RAW_SELLOUT.filter(r=>r.dealer===EXEC_DD.name&&r.qty>0).map(r=>norm(r.channel)));
+    rows=[['Assigned channels',assigned],['Active channels',activeCh.size],['Activation rate',assigned>0?pct(activeCh.size,assigned):'—'],['Period sellout',periodSell>0?periodSell.toLocaleString():'0'],['Period visits',periodVis||'0']];
+  }else if(EXEC_DD.type==='region'){
+    const periodSell=fSell().filter(r=>r.region===EXEC_DD.name).reduce((s,r)=>s+r.qty,0);
+    const periodVis=fVis().filter(r=>r.region===EXEC_DD.name).length;
+    const assigned=NORM_CHANNEL_SELLOUT_REF.filter(c=>c.region===EXEC_DD.name).length;
+    const activeCh=new Set(RAW_SELLOUT.filter(r=>r.region===EXEC_DD.name&&r.qty>0).map(r=>norm(r.channel)).filter(ch=>ASSIGNED_SET.has(ch)));
+    rows=[['Assigned',assigned],['Active',activeCh.size],['Activation rate',assigned>0?pct(activeCh.size,assigned):'—'],['Period sellout',periodSell>0?periodSell.toLocaleString():'0'],['Period visits',periodVis||'0']];
+  }else if(EXEC_DD.type==='pic'){
+    const periodSell=fSell().filter(r=>r.supervisor===EXEC_DD.name).reduce((s,r)=>s+r.qty,0);
+    const periodVis=fVis().filter(r=>r.supervisor===EXEC_DD.name).length;
+    rows=[['Period sellout',periodSell>0?periodSell.toLocaleString():'0'],['Period visits',periodVis||'0']];
+  }
+  bodyEl.innerHTML=rows.map(([k,v])=>`<div class="exec-dd-row"><span class="exec-dd-key">${k}</span><span class="exec-dd-val">${v}</span></div>`).join('');
+}
+
+// ============================================================
 // THEME SYSTEM — automatic, date-based
 // ============================================================
 const THEMES={
@@ -5724,11 +6042,16 @@ function detectTheme(){
 function applyTheme(){
   const key=detectTheme();
   const th=THEMES[key]||THEMES['standard'];
-  let styleEl=document.getElementById('ist-theme-style');
-  if(!styleEl){styleEl=document.createElement('style');styleEl.id='ist-theme-style';document.head.appendChild(styleEl);}
-  styleEl.textContent=
-    '.header{background:'+th.headerBg+'!important;border-bottom-color:'+th.accent+'!important;}'+
-    '.tab-btn.active{color:'+th.accent+';border-bottom-color:'+th.accent+'!important;}';
+  const root=document.documentElement;
+  root.style.setProperty('--ist-header-bg',th.headerBg);
+  root.style.setProperty('--ist-accent',th.accent);
+  const rgb=hexToRgbStr(th.accent);
+  root.style.setProperty('--ist-accent-alpha','rgba('+rgb+',.12)');
+  root.style.setProperty('--ist-accent-border','rgba('+rgb+',.25)');
+  root.style.setProperty('--ist-chart-line',th.accent);
+  root.style.setProperty('--ist-tab-active',th.accent);
+  root.style.setProperty('--ist-sel-bg','rgba('+rgb+',.08)');
+  root.style.setProperty('--ist-sel-border','rgba('+rgb+',.22)');
   const pill=document.getElementById('seasonPill');
   if(pill){
     if(th.label){pill.textContent=th.label;pill.style.color=th.labelColor;pill.style.display='';}
