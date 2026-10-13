@@ -237,10 +237,10 @@ tbody tr:hover{background:#1c2128;}
 .exec-ar-badge{font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px;flex-shrink:0;}
 .exec-ar-badge.b-na{background:rgba(248,81,73,.2);color:#f85149;}
 .exec-ar-badge.b-ns{background:rgba(210,153,34,.2);color:#d29922;}
-.exec-ar-ch{font-size:11px;color:#c9d1d9;font-weight:600;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.exec-ar-meta{font-size:9px;color:#6e7681;flex-shrink:0;}
-.exec-ar-drill{font-size:9px;color:#484f58;flex-shrink:0;}
-.exec-ar-footer{font-size:9px;color:#484f58;margin-top:8px;text-align:right;}
+.exec-ar-ch{font-size:12px;color:#c9d1d9;font-weight:600;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.exec-ar-meta{font-size:11px;color:#8b949e;flex-shrink:0;}
+.exec-ar-drill{font-size:11px;color:#6e7681;flex-shrink:0;}
+.exec-ar-footer{font-size:11px;color:#6e7681;margin-top:8px;text-align:right;}
 
 /* ── DEEP DIVE ── */
 .exec-dd-close{font-size:10px;color:#6e7681;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:2px 9px;cursor:pointer;}
@@ -250,6 +250,90 @@ tbody tr:hover{background:#1c2128;}
 .exec-dd-row:nth-child(odd){background:rgba(255,255,255,.025);}
 .exec-dd-key{color:#7d8590;}
 .exec-dd-val{color:#e6edf3;font-weight:600;}
+
+/* ── PHASE 2C-A EXEC BAR COMPACT FIX ── */
+.exec-bar-row.f-zero .exec-bar-val{color:#484f58;}
+.exec-bar-row.f-zero .exec-bar-sub{color:#30363d;}
+.exec-bar-val{font-size:12px;}
+.exec-bar-sub{font-size:11px;color:#7d8590;}
+.exec-bar-lbl{font-size:12px;}
+.kpi-v2-sub{font-size:11px;color:#8b949e;margin-top:2px;}
+.kpi-v2-delta{font-size:11px;margin-top:2px;}
+.exec-sel-clear-all{background:none;border:1px solid #30363d;border-radius:4px;padding:2px 8px;font-size:11px;color:#8b949e;cursor:pointer;margin-left:4px;}
+.exec-sel-clear-all:hover{border-color:#6e7681;color:#c9d1d9;}
+
+/* ── COMPACT DQ BADGE ── */
+.dq-badge-wrap{margin-bottom:8px;position:relative;display:flex;align-items:flex-start;}
+.dq-badge-btn{background:none;border:1px solid #9e6a03;border-radius:5px;padding:3px 10px 3px 8px;font-size:11px;color:#e3b341;cursor:pointer;display:flex;align-items:center;gap:5px;white-space:nowrap;}
+.dq-badge-btn:hover{background:#1c1a0a;}
+.dq-badge-panel{display:none;position:absolute;top:calc(100% + 4px);left:0;z-index:200;background:#161b22;border:1px solid #9e6a03;border-radius:6px;padding:10px 14px;min-width:300px;max-width:580px;box-shadow:0 8px 24px rgba(0,0,0,.5);}
+.dq-badge-wrap.open .dq-badge-panel{display:block;}
+.dq-badge-item{padding:3px 0;font-size:11px;color:#c9a227;display:flex;align-items:flex-start;gap:6px;}
+.dq-badge-item::before{content:'•';color:#9e6a03;flex-shrink:0;}
+
+/* ── PHASE 2C-B SELLOUT ── */
+.sell-kpi-row{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;}
+.sell-kpi{background:#0d1117;border:1px solid #21262d;border-radius:8px;padding:10px 14px;min-width:120px;flex:1;}
+.sell-kpi-lbl{font-size:10px;color:#7d8590;margin-bottom:3px;white-space:nowrap;}
+.sell-kpi-val{font-size:22px;font-weight:700;color:#e6edf3;line-height:1.1;}
+.sell-kpi-sub{font-size:11px;color:#8b949e;margin-top:3px;}
+.sell-kpi-delta{font-size:11px;margin-top:3px;}
+.sell-kpi-delta.up{color:#3fb950;}
+.sell-kpi-delta.down{color:#f85149;}
+.sell-kpi-delta.flat{color:#7d8590;}
+.sell-main-grid{display:grid;grid-template-columns:3fr 2fr;gap:12px;margin-bottom:12px;}
+.sell-secondary-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+.card-tab-bar{display:flex;gap:2px;margin-left:8px;flex-shrink:0;}
+.card-tab{background:none;border:1px solid transparent;border-radius:4px;padding:2px 8px;font-size:10px;color:#7d8590;cursor:pointer;transition:all .15s;}
+.card-tab:hover{color:#c9d1d9;border-color:#30363d;}
+.card-tab.active{color:var(--ist-accent);border-color:var(--ist-accent-border);background:var(--ist-accent-alpha);}
+.sell-tbl-controls{display:flex;align-items:center;gap:8px;margin-left:auto;}
+.sell-search{background:#0d1117;border:1px solid #30363d;border-radius:5px;padding:3px 8px;font-size:11px;color:#c9d1d9;width:160px;outline:none;}
+.sell-search:focus{border-color:var(--ist-accent);}
+.sell-tbl{width:100%;border-collapse:collapse;font-size:11px;}
+.sell-tbl th{padding:5px 8px;text-align:left;color:#7d8590;border-bottom:1px solid #21262d;font-weight:600;cursor:pointer;user-select:none;white-space:nowrap;}
+.sell-tbl th.sort-asc::after{content:' ▲';font-size:9px;}
+.sell-tbl th.sort-desc::after{content:' ▼';font-size:9px;}
+.sell-tbl th:hover{color:#c9d1d9;}
+.sell-tbl td{padding:5px 8px;border-bottom:1px solid #161b22;color:#c9d1d9;vertical-align:middle;}
+.sell-tbl tr:hover td{background:#161b22;}
+.sell-tbl tr.clickable{cursor:pointer;}
+.sell-tbl td.num{text-align:right;font-variant-numeric:tabular-nums;}
+.sell-pagination{display:flex;align-items:center;gap:6px;padding:8px 4px 2px;font-size:11px;color:#7d8590;justify-content:flex-end;}
+.sell-pg-btn{background:#0d1117;border:1px solid #30363d;border-radius:4px;padding:2px 8px;color:#c9d1d9;cursor:pointer;font-size:11px;}
+.sell-pg-btn:disabled{opacity:.35;cursor:default;}
+.sell-pg-btn:not(:disabled):hover{border-color:var(--ist-accent);}
+.ch-dd-badge{display:inline-block;padding:1px 5px;border-radius:3px;font-size:9px;font-weight:700;}
+.ch-dd-badge.active{background:rgba(63,185,80,.15);color:#3fb950;}
+.ch-dd-badge.inactive{background:rgba(248,81,73,.15);color:#f85149;}
+
+/* ── PHASE 2C-C VISITS ── */
+.vis-outcome-row{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;}
+.vis-outcome-kpi{flex:1;min-width:140px;background:#0d1117;border:1px solid #21262d;border-radius:8px;padding:10px 14px;cursor:pointer;transition:all .15s;position:relative;}
+.vis-outcome-kpi:hover{border-color:#30363d;}
+.vis-outcome-kpi.selected{border-color:var(--ist-accent);background:var(--ist-accent-alpha);box-shadow:0 0 0 1px var(--ist-accent-border);}
+.vis-outcome-kpi.selected::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--ist-accent);border-radius:0 0 8px 8px;}
+.vis-outcome-lbl{font-size:10px;color:#7d8590;margin-bottom:3px;}
+.vis-outcome-val{font-size:22px;font-weight:700;color:#e6edf3;line-height:1.1;}
+.vis-outcome-sub{font-size:11px;color:#8b949e;margin-top:3px;}
+.vis-outcome-clr{font-size:10px;color:var(--ist-accent);margin-top:4px;display:none;}
+.vis-outcome-kpi.selected .vis-outcome-clr{display:block;}
+.vis-action-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+.vis-ar-row{display:flex;align-items:center;gap:8px;padding:6px 4px;border-bottom:1px solid #161b22;cursor:pointer;}
+.vis-ar-row:hover{background:#0d1117;border-radius:4px;}
+.vis-ar-badge{padding:1px 5px;border-radius:3px;font-size:9px;font-weight:700;flex-shrink:0;}
+.vis-ar-badge.ns{background:rgba(248,161,73,.15);color:#f8a149;}
+.vis-ar-badge.na{background:rgba(248,81,73,.15);color:#f85149;}
+.vis-ar-ch{font-size:12px;color:#c9d1d9;font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.vis-ar-meta{font-size:11px;color:#8b949e;white-space:nowrap;flex-shrink:0;}
+.vis-ar-footer{font-size:11px;color:#7d8590;padding:6px 4px;margin-top:4px;}
+.vis-ar-link{color:var(--ist-accent);text-decoration:none;cursor:pointer;}
+.vis-ar-link:hover{text-decoration:underline;}
+.vis-unassigned-row{display:flex;align-items:center;gap:8px;padding:4px 2px;border-bottom:1px solid #161b22;font-size:11px;color:#c9d1d9;}
+
+@media(max-width:900px){
+  .sell-main-grid,.sell-secondary-grid,.vis-action-grid{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
@@ -296,15 +380,13 @@ tbody tr:hover{background:#1c2128;}
   </div>
 </div>
 
-<!-- ── DATA QUALITY (collapsible) ── -->
-<details class="dq-details" id="dqDetails">
-  <summary class="dq-summary">
-    <strong>&#9888; Data Quality Alerts</strong>
-    <span id="dqCount" style="margin-left:4px;background:#f59e0b;color:#fff;border-radius:10px;padding:1px 6px;font-size:10px;font-weight:700;"></span>
-    <span style="margin-left:auto;font-size:10px;color:#b45309;">Click to expand</span>
-  </summary>
-  <div class="dq-body" id="dqBody"></div>
-</details>
+<!-- ── DATA QUALITY (compact badge) ── -->
+<div class="dq-badge-wrap" id="dqBadgeWrap">
+  <button class="dq-badge-btn" onclick="toggleDqBadge()" id="dqBadgeBtn">
+    &#9888; <span id="dqCount">0</span> Data <span id="dqCountLabel">Issue</span>
+  </button>
+  <div class="dq-badge-panel" id="dqBody"></div>
+</div>
 
 <!-- ── TAB NAV ── -->
 <div class="tab-nav">
@@ -377,50 +459,66 @@ tbody tr:hover{background:#1c2128;}
 <!-- TAB 2: SELLOUT PERFORMANCE -->
 <!-- ═══════════════════════════════════════════════════════ -->
 <div id="tab-sellout" class="tab-content">
-  <div class="two-col">
-    <div class="section">
-      <div class="section-hdr"><div class="section-title">Weekly Sellout Trend</div></div>
-      <div class="tbl-wrap"><table><thead id="sellTrendHead"></thead><tbody id="sellTrendBody"></tbody></table></div>
+  <!-- Selection bar -->
+  <div class="exec-sel-bar" id="sellSelBar" style="display:none;"></div>
+  <!-- Compact KPIs -->
+  <div class="sell-kpi-row" id="sellKpis"></div>
+  <!-- Main grid: trend chart left, performance bars right -->
+  <div class="sell-main-grid">
+    <div class="exec-card no-mb">
+      <div class="exec-card-hdr">
+        <span class="exec-card-title">Weekly sellout trend</span>
+        <span class="exec-card-hint">click week to filter</span>
+      </div>
+      <div class="exec-trend-wrap" id="sellTrendWrap"></div>
     </div>
-    <div class="section">
-      <div class="section-hdr"><div class="section-title">Sellout by Region</div></div>
-      <div class="tbl-wrap"><table><thead id="sellRegHead"></thead><tbody id="sellRegBody"></tbody></table></div>
-    </div>
-  </div>
-  <div class="section">
-    <div class="section-hdr"><div class="section-title">Sellout by Supervisor</div></div>
-    <div class="tbl-wrap"><table><thead id="sellUserHead"></thead><tbody id="sellUserBody"></tbody></table></div>
-  </div>
-  <div class="two-col">
-    <div class="section">
-      <div class="section-hdr"><div class="section-title">Top 10 Channels</div><span class="section-badge" id="topChBadge"></span></div>
-      <div class="tbl-wrap"><table><thead id="topChHead"></thead><tbody id="topChBody"></tbody></table></div>
-    </div>
-    <div class="section">
-      <div class="section-hdr"><div class="section-title">Bottom 10 Channels — Lowest Sellout</div><span class="section-badge" id="botChBadge"></span></div>
-      <div class="tbl-wrap"><table><thead id="botChHead"></thead><tbody id="botChBody"></tbody></table></div>
-    </div>
-  </div>
-  <div class="two-col">
-    <div class="section">
-      <div class="section-hdr"><div class="section-title">Product Mix — By Category</div></div>
-      <div class="tbl-wrap"><table><thead id="prodCatHead"></thead><tbody id="prodCatBody"></tbody></table></div>
-    </div>
-    <div class="section">
-      <div class="section-hdr"><div class="section-title">Product Mix — By Type</div></div>
-      <div class="tbl-wrap"><table><thead id="prodTypeHead"></thead><tbody id="prodTypeBody"></tbody></table></div>
+    <div class="exec-card no-mb">
+      <div class="exec-card-hdr">
+        <span class="exec-card-title">Performance</span>
+        <div class="card-tab-bar" id="sellPerfTabs">
+          <button class="card-tab active" onclick="sellPerfTab('region',this)">Region</button>
+          <button class="card-tab" onclick="sellPerfTab('pic',this)">PIC</button>
+          <button class="card-tab" onclick="sellPerfTab('dealer',this)">Dealer</button>
+        </div>
+      </div>
+      <div id="sellPerfBars"></div>
     </div>
   </div>
-  <div class="section">
-    <div class="section-hdr"><div class="section-title">Top Models</div></div>
-    <div class="tbl-wrap"><table><thead id="prodModelHead"></thead><tbody id="prodModelBody"></tbody></table></div>
-  </div>
-  <div class="section" id="sellDealerSection">
-    <div class="section-hdr">
-      <div class="section-title">Sellout by Dealer</div>
-      <span class="section-badge" id="sellDealerBadge"></span>
+  <!-- Product mix + Channel ranking -->
+  <div class="sell-secondary-grid">
+    <div class="exec-card no-mb">
+      <div class="exec-card-hdr">
+        <span class="exec-card-title">Product mix</span>
+        <div class="card-tab-bar" id="sellMixTabs">
+          <button class="card-tab active" onclick="sellMixTab('category',this)">Category</button>
+          <button class="card-tab" onclick="sellMixTab('type',this)">Type</button>
+          <button class="card-tab" onclick="sellMixTab('model',this)">Model</button>
+        </div>
+      </div>
+      <div id="sellMixBars"></div>
     </div>
-    <div class="tbl-wrap"><table><thead id="sellDealerHead"></thead><tbody id="sellDealerBody"></tbody></table></div>
+    <div class="exec-card no-mb">
+      <div class="exec-card-hdr">
+        <span class="exec-card-title">Channel ranking</span>
+        <div class="card-tab-bar" id="sellChRankTabs">
+          <button class="card-tab active" onclick="sellChRankTab('top',this)">Top 10</button>
+          <button class="card-tab" onclick="sellChRankTab('bottom',this)">Bottom 10</button>
+        </div>
+      </div>
+      <div id="sellChRankBars"></div>
+    </div>
+  </div>
+  <!-- Paginated channel detail table -->
+  <div class="exec-card">
+    <div class="exec-card-hdr">
+      <span class="exec-card-title">Channel detail</span>
+      <div class="sell-tbl-controls">
+        <input class="sell-search" id="sellSearch" placeholder="Search channel…" oninput="onSellSearch()">
+        <span class="exec-card-badge" id="sellDetailBadge"></span>
+      </div>
+    </div>
+    <div id="sellDetailWrap"></div>
+    <div class="sell-pagination" id="sellPagination"></div>
   </div>
 </div>
 
@@ -428,54 +526,66 @@ tbody tr:hover{background:#1c2128;}
 <!-- TAB 3: VISITS &amp; ACTIVITY -->
 <!-- ═══════════════════════════════════════════════════════ -->
 <div id="tab-visits" class="tab-content">
-  <div class="section">
-    <div class="section-hdr"><div class="section-title">Weekly Visits Trend</div></div>
-    <div class="tbl-wrap"><table><thead id="visTrendHead"></thead><tbody id="visTrendBody"></tbody></table></div>
+  <!-- Selection bar -->
+  <div class="exec-sel-bar" id="visSelBar" style="display:none;"></div>
+  <!-- 4 Outcome KPIs -->
+  <div class="vis-outcome-row" id="visOutcomeKpis"></div>
+  <!-- Trend chart + activity breakdown -->
+  <div class="sell-main-grid">
+    <div class="exec-card no-mb">
+      <div class="exec-card-hdr">
+        <span class="exec-card-title">Weekly visit trend</span>
+        <span class="exec-card-hint">click week to filter</span>
+      </div>
+      <div class="exec-trend-wrap" id="visTrendWrap"></div>
+    </div>
+    <div class="exec-card no-mb">
+      <div class="exec-card-hdr">
+        <span class="exec-card-title">Activity breakdown</span>
+        <div class="card-tab-bar" id="visActivityTabs">
+          <button class="card-tab active" onclick="visActivityTab('pic',this)">PIC</button>
+          <button class="card-tab" onclick="visActivityTab('region',this)">Region</button>
+        </div>
+      </div>
+      <div id="visActivityBars"></div>
+    </div>
   </div>
-  <div class="section" id="visOutcomesSummarySection">
-    <div class="section-hdr">
-      <div class="section-title">Visit Outcomes Summary</div>
-      <span class="section-badge" id="visOutcomesSummaryBadge"></span>
+  <!-- Action required: 2-col -->
+  <div class="vis-action-grid">
+    <div class="exec-card no-mb">
+      <div class="exec-card-hdr">
+        <span class="exec-card-title">Visited, no sale</span>
+        <span class="exec-card-badge" id="visNoSaleBadge"></span>
+      </div>
+      <div id="visNoSaleBody"></div>
     </div>
-    <div id="visOutcomesTiles" class="vis-outcomes-grid"></div>
+    <div class="exec-card no-mb">
+      <div class="exec-card-hdr">
+        <span class="exec-card-title">Not activated</span>
+        <span class="exec-card-badge" id="visNotActBadge"></span>
+      </div>
+      <div id="visNotActBody"></div>
+    </div>
   </div>
-  <div class="two-col">
-    <div class="section">
-      <div class="section-hdr"><div class="section-title">Activity by PIC — with Conversion</div></div>
-      <div class="tbl-wrap"><table><thead id="visUserHead"></thead><tbody id="visUserBody"></tbody></table></div>
+  <!-- Unassigned compact -->
+  <div class="exec-card" id="visUnassignedCard">
+    <div class="exec-card-hdr">
+      <span class="exec-card-title">Unassigned / No dealer visits</span>
+      <span class="exec-card-badge" id="visUnassignedBadge"></span>
     </div>
-    <div class="section">
-      <div class="section-hdr"><div class="section-title">Visits by Region</div></div>
-      <div class="tbl-wrap"><table><thead id="visRegHead"></thead><tbody id="visRegBody"></tbody></table></div>
-    </div>
+    <div id="visUnassignedBody"></div>
   </div>
-  <div class="section" id="visNoSaleSection">
-    <div class="section-hdr">
-      <div class="section-title">Visited, No Sale</div>
-      <span class="section-badge" id="visNoSaleBadge"></span>
+  <!-- Detailed visit log (paginated) -->
+  <div class="exec-card">
+    <div class="exec-card-hdr">
+      <span class="exec-card-title">Detailed visit log</span>
+      <div class="sell-tbl-controls">
+        <input class="sell-search" id="visSearch" placeholder="Search channel, PIC…" oninput="onVisSearch()">
+        <span class="exec-card-badge" id="visDetailBadge"></span>
+      </div>
     </div>
-    <div class="tbl-wrap"><table><thead id="visNoSaleHead"></thead><tbody id="visNoSaleBody"></tbody></table></div>
-  </div>
-  <div class="section" id="visNotActSection">
-    <div class="section-hdr">
-      <div class="section-title">Not Activated — Action Required</div>
-      <span class="section-badge" id="visNotActBadge"></span>
-    </div>
-    <div class="tbl-wrap"><table><thead id="visNotActHead"></thead><tbody id="visNotActBody"></tbody></table></div>
-  </div>
-  <div class="section" id="visUnassignedSection">
-    <div class="section-hdr">
-      <div class="section-title">Unassigned / No Dealer Visits</div>
-      <span class="section-badge" id="visUnassignedBadge"></span>
-    </div>
-    <div class="tbl-wrap"><table><thead id="visUnassignedHead"></thead><tbody id="visUnassignedBody"></tbody></table></div>
-  </div>
-  <div class="section">
-    <div class="section-hdr">
-      <div class="section-title">Detailed Visit Log — All Active Channels</div>
-      <span class="section-badge" id="visOutcomeBadge"></span>
-    </div>
-    <div class="tbl-wrap"><table><thead id="visOutcomeHead"></thead><tbody id="visOutcomeBody"></tbody></table></div>
+    <div id="visDetailWrap"></div>
+    <div class="sell-pagination" id="visPagination"></div>
   </div>
 </div>
 
@@ -5065,8 +5175,14 @@ function initFilters(){
   if(dqAlerts.length===0){
     dqAlerts.push('No data quality issues detected. All records processed successfully.');
   }
-  document.getElementById('dqCount').textContent=dqAlerts.length===1&&dqAlerts[0].startsWith('No data')?'✓':dqAlerts.length;
-  document.getElementById('dqBody').innerHTML=dqAlerts.map(a=>'<div class="dq-item">'+a+'</div>').join('');
+  const isClean=dqAlerts.length===1&&dqAlerts[0].startsWith('No data');
+  const countEl=document.getElementById('dqCount');
+  const labelEl=document.getElementById('dqCountLabel');
+  const btnEl=document.getElementById('dqBadgeBtn');
+  if(countEl)countEl.textContent=isClean?'✓':dqAlerts.length;
+  if(labelEl)labelEl.textContent=isClean?'Quality OK':(dqAlerts.length===1?'Issue':'Issues');
+  if(btnEl)btnEl.style.borderColor=isClean?'#3fb950':'#9e6a03';
+  document.getElementById('dqBody').innerHTML=dqAlerts.map(a=>'<div class="dq-badge-item">'+a+'</div>').join('');
 
   updateHeader();
 }
@@ -5399,12 +5515,12 @@ function renderActionRequired(act,cwSell,cwVis){
   const cwSByCh={};cwSell.forEach(r=>{const ch=norm(r.channel);cwSByCh[ch]=(cwSByCh[ch]||0)+r.qty;});
   const cwVByCh={};cwVis.forEach(r=>{const ch=norm(r.channel);cwVByCh[ch]=(cwVByCh[ch]||0)+1;});
 
-  // Not activated — top 4
-  const notActRows=act.inactive.slice(0,4);
-  // Visited no sale — assigned channels with visit but no sellout this period — top 4
+  // Not activated — top 3
+  const notActRows=act.inactive.slice(0,3);
+  // Visited no sale — assigned channels with visit but no sellout this period — top 3
   const visitedNoSale=Object.entries(cwVByCh)
     .filter(([ch])=>ASSIGNED_SET.has(ch)&&!(cwSByCh[ch]>0))
-    .slice(0,4);
+    .slice(0,3);
 
   const totalNotAct=act.inactive.length;
   const totalNoSale=Object.entries(cwVByCh).filter(([ch])=>ASSIGNED_SET.has(ch)&&!(cwSByCh[ch]>0)).length;
@@ -5462,208 +5578,119 @@ function renderSellout(){
   const allSell=fSellAllTime();
   const cwSell=fSell();
   const cwVis=fVis();
+  const pwSell=F.week?fSell(F.week-1):[];
 
-  // ─ WEEKLY TREND ─
-  const wkMap={};ALL_WEEKS.forEach(w=>wkMap[w]={qty:0,ch:new Set()});
-  allSell.forEach(r=>{if(!wkMap[r.week])wkMap[r.week]={qty:0,ch:new Set()};wkMap[r.week].qty+=r.qty;wkMap[r.week].ch.add(norm(r.channel));});
-  const maxWkQ=Math.max(...Object.values(wkMap).map(d=>d.qty),1);
-  document.getElementById('sellTrendHead').innerHTML=th(['Week','Date Range','Channels','Units','WoW &#9650;&#9660;','Volume']);
-  let stBody='';
-  ALL_WEEKS.forEach((w,i)=>{
-    const d=wkMap[w]||{qty:0,ch:new Set()};
-    const pw=i>0?(wkMap[ALL_WEEKS[i-1]]||{qty:0}).qty:0;
-    const sel=F.week===w;
-    stBody+='<tr '+(sel?'class="selected-row"':'')+'><td>'+fmtW(w)+(sel?' ◀':'')+'</td><td style="color:#94a3b8;font-size:10px;">'+wkRange(w)+'</td>'+tdC(d.ch.size)+tdR(d.qty)+'<td class="num">'+trendHtml(d.qty,pw,true)+'</td><td>'+bar(d.qty,maxWkQ)+'</td></tr>';
+  // ─ COMPACT KPIs ─
+  const cwQty=cwSell.reduce((s,r)=>s+r.qty,0);
+  const pwQty=pwSell.reduce((s,r)=>s+r.qty,0);
+  const allQty=allSell.reduce((s,r)=>s+r.qty,0);
+  const cwSellCh=new Set(cwSell.filter(r=>r.qty>0).map(r=>norm(r.channel))).size;
+  const allSellCh=new Set(allSell.filter(r=>r.qty>0).map(r=>norm(r.channel))).size;
+  const wowPct=F.week?(pwQty>0?((cwQty-pwQty)/pwQty*100):null):null;
+  const wowCls=wowPct===null?'flat':wowPct>0?'up':'down';
+  const wkLabel=F.week?fmtW(F.week):'Period';
+  renderSellSelBar();
+  document.getElementById('sellKpis').innerHTML=`
+    <div class="sell-kpi">
+      <div class="sell-kpi-lbl">Sellout — ${wkLabel}</div>
+      <div class="sell-kpi-val">${cwQty.toLocaleString()}</div>
+      <div class="sell-kpi-delta ${wowCls}">${wowPct!==null?(wowPct>0?'▲ ':'▼ ')+Math.abs(wowPct).toFixed(1)+'% WoW':'—'}</div>
+      <div class="sell-kpi-sub">PW: ${pwQty.toLocaleString()}</div>
+    </div>
+    <div class="sell-kpi">
+      <div class="sell-kpi-lbl">All-time sellout</div>
+      <div class="sell-kpi-val">${allQty.toLocaleString()}</div>
+      <div class="sell-kpi-sub">${allSellCh} selling channels</div>
+    </div>
+    <div class="sell-kpi">
+      <div class="sell-kpi-lbl">Selling channels</div>
+      <div class="sell-kpi-val">${cwSellCh}</div>
+      <div class="sell-kpi-sub">${wkLabel}</div>
+    </div>
+    <div class="sell-kpi">
+      <div class="sell-kpi-lbl">Assigned channels</div>
+      <div class="sell-kpi-val">${NORM_CHANNEL_SELLOUT_REF.length}</div>
+      <div class="sell-kpi-sub">${allSellCh} ever sold</div>
+    </div>
+  `;
+
+  // ─ WEEKLY TREND CHART ─
+  const wkMap={};
+  allSell.forEach(r=>{if(!wkMap[r.week])wkMap[r.week]=0;wkMap[r.week]+=r.qty;});
+  const trendData=[...new Set(allSell.map(r=>r.week))].sort((a,b)=>a-b).map(w=>({week:w,qty:wkMap[w]}));
+  const sellTrendWrap=document.getElementById('sellTrendWrap');
+  if(sellTrendWrap){sellTrendWrap.innerHTML=buildTrendChartSvg(trendData,F.week);attachSellTrendEvents();}
+
+  // ─ PERFORMANCE BARS ─
+  renderSellPerfBars();
+
+  // ─ PRODUCT MIX ─
+  renderSellMixBars();
+
+  // ─ CHANNEL RANKING ─
+  renderSellChRankBars();
+
+  // ─ CHANNEL DETAIL TABLE ─
+  _SELL_DETAIL_DATA=buildSellDetailData();
+  renderSellDetail();
+}
+
+function attachSellTrendEvents(){
+  const svg=document.querySelector('#sellTrendWrap #execTrendSvg');
+  const tip=document.querySelector('#sellTrendWrap #execTrendTip');
+  if(!svg||!tip)return;
+  const wrap=svg.parentElement;
+  svg.querySelectorAll('.trend-hit').forEach(el=>{
+    el.addEventListener('click',()=>{const wk=parseInt(el.dataset.wk);setWeekFilter(F.week===wk?null:wk);});
+    el.addEventListener('mouseenter',e=>{const wrect=wrap.getBoundingClientRect();tip.textContent='W'+el.dataset.wk+': '+parseInt(el.dataset.qty).toLocaleString()+' units';tip.style.display='block';tip.style.left=Math.min(e.clientX-wrect.left+8,wrect.width-130)+'px';tip.style.top=Math.max(e.clientY-wrect.top-32,0)+'px';});
+    el.addEventListener('mouseleave',()=>{tip.style.display='none';});
   });
-  document.getElementById('sellTrendBody').innerHTML=stBody||emptyRow(6);
-
-  // ─ BY REGION ─
-  const regD={};allSell.forEach(r=>{if(!regD[r.region])regD[r.region]={qty:0,ch:new Set()};regD[r.region].qty+=r.qty;regD[r.region].ch.add(norm(r.channel));});
-  const totQ=allSell.reduce((s,r)=>s+r.qty,0);
-  const maxRQ=Math.max(...Object.values(regD).map(d=>d.qty),1);
-  const totRegCh=Object.values(regD).reduce((s,d)=>s+d.ch.size,0);
-  document.getElementById('sellRegHead').innerHTML=th(['Region','Channels','Units','% of Total','Volume']);
-  const regRows=Object.entries(regD).sort((a,b)=>b[1].qty-a[1].qty).map(([reg,d])=>'<tr><td><strong>'+reg+'</strong></td>'+tdC(d.ch.size)+tdR(d.qty)+'<td class="num">'+pct(d.qty,totQ)+'</td><td>'+bar(d.qty,maxRQ,'g')+'</td></tr>').join('');
-  const regTotalRow=totQ>0?'<tr class="total-row"><td><strong>TOTAL</strong></td>'+tdC(totRegCh)+tdR(totQ)+'<td class="num">100%</td><td>'+bar(totQ,totQ,'g')+'</td></tr>':'';
-  document.getElementById('sellRegBody').innerHTML=(regRows||emptyRow(5))+regTotalRow;
-
-  // ─ BY SUPERVISOR ─
-  const supD={};allSell.forEach(r=>{const s=r.supervisor||'?';if(!supD[s])supD[s]={qty:0,ch:new Set(),wks:new Set()};supD[s].qty+=r.qty;supD[s].ch.add(norm(r.channel));supD[s].wks.add(r.week);});
-  const visSupD={};fVisAllTime().forEach(r=>{const s=r.supervisor||'?';if(!visSupD[s])visSupD[s]={cnt:0,ch:new Set()};visSupD[s].cnt++;visSupD[s].ch.add(norm(r.channel));});
-  document.getElementById('sellUserHead').innerHTML=th(['Supervisor','Active Channels','Units Sold','Weeks w/ Sales','Total Visits','Conversion %','Avg Units/Channel']);
-  let suBody=Object.entries(supD).sort((a,b)=>b[1].qty-a[1].qty).map(([sup,d])=>{
-    const vis=visSupD[sup]||{cnt:0,ch:new Set()};
-    const convSet=[...d.ch].filter(c=>vis.ch.has(c)).length;
-    const convPct=vis.ch.size>0?Math.round(convSet/vis.ch.size*100)+'%':'—';
-    const avg=d.ch.size>0?(d.qty/d.ch.size).toFixed(1):'0';
-    const isLowConv=vis.ch.size>=5&&parseInt(convPct)<30;
-    return '<tr '+(isLowConv?'class="warn-row"':'')+'><td><strong>'+sup+'</strong></td>'+tdC(d.ch.size)+tdR(d.qty)+tdC(d.wks.size)+tdC(vis.cnt)+'<td class="num">'+(isLowConv?'<span class="badge b-warn">'+convPct+'</span>':convPct)+'</td>'+tdR(avg)+'</tr>';
-  }).join('');
-  // Grand total row
-  const gtCh=new Set(allSell.filter(r=>r.qty>0).map(r=>norm(r.channel))).size;
-  const gtQty=Object.values(supD).reduce((s,d)=>s+d.qty,0);
-  const gtWks=new Set(allSell.map(r=>r.week)).size;
-  const gtVis=Object.values(visSupD).reduce((s,d)=>s+d.cnt,0);
-  const gtAllSellCh=new Set(allSell.filter(r=>r.qty>0).map(r=>norm(r.channel)));
-  const gtAllVisCh=new Set(fVisAllTime().map(r=>norm(r.channel)));
-  const gtConv=gtAllVisCh.size>0?Math.round([...gtAllSellCh].filter(c=>gtAllVisCh.has(c)).length/gtAllVisCh.size*100)+'%':'—';
-  const gtAvg=gtCh>0?(gtQty/gtCh).toFixed(1):'0';
-  const suTotalRow=gtQty>0?'<tr class="total-row"><td><strong>TOTAL</strong></td>'+tdC(gtCh)+tdR(gtQty)+tdC(gtWks)+tdC(gtVis)+'<td class="num">'+gtConv+'</td>'+tdR(gtAvg)+'</tr>':'';
-  document.getElementById('sellUserBody').innerHTML=(suBody||emptyRow(7))+suTotalRow;
-
-  // ─ CHANNEL DATA (shared for top/bottom) ─
-  const chD={};allSell.forEach(r=>{const ch=norm(r.channel);if(!chD[ch])chD[ch]={qty:0,reg:r.region,city:r.city,sup:r.supervisor,fw:r.week};chD[ch].qty+=r.qty;if(r.week<chD[ch].fw)chD[ch].fw=r.week;});
-  const chEntries=Object.entries(chD).sort((a,b)=>b[1].qty-a[1].qty);
-
-  // ─ TOP 10 CHANNELS ─
-  const top10=chEntries.slice(0,10);const maxCQ=top10.length?top10[0][1].qty:1;
-  document.getElementById('topChBadge').textContent='by total units';
-  document.getElementById('topChHead').innerHTML=th(['#','Channel','Region','City','First Active','Units','Volume']);
-  document.getElementById('topChBody').innerHTML=top10.map(([ch,d],i)=>'<tr class="high-row"><td class="rank">'+String(i+1).padStart(2,' ')+'</td><td><strong>'+ch+'</strong></td><td>'+d.reg+'</td><td>'+(d.city||'—')+'</td>'+tdC(fmtW(d.fw))+tdR(d.qty)+'<td>'+bar(d.qty,maxCQ,'g')+'</td></tr>').join('')||emptyRow(7);
-
-  // ─ BOTTOM 10 CHANNELS (channels with sellout, lowest units) ─
-  const bot10=chEntries.filter(([ch,d])=>d.qty>0).slice(-10).reverse();
-  const maxBQ=bot10.length?Math.max(...bot10.map(([,d])=>d.qty)):1;
-  document.getElementById('botChBadge').textContent='channels with sales';
-  document.getElementById('botChHead').innerHTML=th(['#','Channel','Region','City','First Active','Units','Volume']);
-  document.getElementById('botChBody').innerHTML=bot10.length?bot10.map(([ch,d],i)=>'<tr class="low-row"><td class="rank">'+String(i+1).padStart(2,' ')+'</td><td><strong>'+ch+'</strong></td><td>'+d.reg+'</td><td>'+(d.city||'—')+'</td>'+tdC(fmtW(d.fw))+tdR(d.qty)+'<td>'+bar(d.qty,maxBQ,'r')+'</td></tr>').join(''):emptyRow(7,'No sellout data in selected period.');
-
-  // ─ PRODUCT MIX — by Category and by Type (separate tables) ─
-  const catD={},typD={};cwSell.forEach(r=>{const cat=r.category||'Unmapped';catD[cat]=(catD[cat]||0)+r.qty;const tp=r.type||'Unmapped';typD[tp]=(typD[tp]||0)+r.qty;});
-  const totPQ=cwSell.reduce((s,r)=>s+r.qty,0);
-  const catR=Object.entries(catD).sort((a,b)=>b[1]-a[1]);
-  const typR=Object.entries(typD).sort((a,b)=>b[1]-a[1]);
-  document.getElementById('prodCatHead').innerHTML=th(['Category','Units','%']);
-  const catRows=catR.map(([cat,cq])=>'<tr><td>'+cat+'</td>'+tdR(cq)+'<td class="num">'+pct(cq,totPQ)+'</td></tr>').join('');
-  const catTotalRow=totPQ>0?'<tr class="total-row"><td><strong>TOTAL</strong></td>'+tdR(totPQ)+'<td class="num">100%</td></tr>':'';
-  document.getElementById('prodCatBody').innerHTML=(catRows||emptyRow(3,'No sellout in selected period.'))+catTotalRow;
-  document.getElementById('prodTypeHead').innerHTML=th(['Type','Units','%']);
-  const typRows=typR.map(([tp,tq])=>'<tr><td>'+tp+'</td>'+tdR(tq)+'<td class="num">'+pct(tq,totPQ)+'</td></tr>').join('');
-  const typTotalRow=totPQ>0?'<tr class="total-row"><td><strong>TOTAL</strong></td>'+tdR(totPQ)+'<td class="num">100%</td></tr>':'';
-  document.getElementById('prodTypeBody').innerHTML=(typRows||emptyRow(3,'No sellout in selected period.'))+typTotalRow;
-
-  // ─ TOP MODELS ─
-  const modD={};cwSell.forEach(r=>{if(!modD[r.model])modD[r.model]={qty:0,prd:r.product,cat:r.category,tp:r.type};modD[r.model].qty+=r.qty;});
-  const topMod=Object.entries(modD).sort((a,b)=>b[1].qty-a[1].qty).slice(0,12);
-  const maxMQ=topMod.length?topMod[0][1].qty:1;
-  document.getElementById('prodModelHead').innerHTML=th(['#','Model','Product','Category','Type','Units','Volume']);
-  document.getElementById('prodModelBody').innerHTML=topMod.map(([m,d],i)=>'<tr><td class="rank">'+String(i+1).padStart(2,' ')+'</td><td><strong>'+m+'</strong></td><td>'+(d.prd||'—')+'</td><td>'+(d.cat||'—')+'</td><td>'+(d.tp||'—')+'</td>'+tdR(d.qty)+'<td>'+bar(d.qty,maxMQ,'g')+'</td></tr>').join('')||emptyRow(7);
-
-  // ─ BY DEALER ─
-  const dD={};allSell.forEach(r=>{const dl=r.dealer||'Unassigned';if(!dD[dl])dD[dl]={qty:0,ch:new Set()};dD[dl].qty+=r.qty;dD[dl].ch.add(norm(r.channel));});
-  const dlTotQ=Object.values(dD).reduce((s,d)=>s+d.qty,0);
-  const maxDQ=Math.max(...Object.values(dD).map(d=>d.qty),1);
-  document.getElementById('sellDealerBadge').textContent='by total units · '+Object.keys(dD).filter(k=>k!=='Unassigned').length+' dealers';
-  document.getElementById('sellDealerHead').innerHTML=th(['Dealer','Channels','Units','% of Total','Volume']);
-  document.getElementById('sellDealerBody').innerHTML=Object.entries(dD).sort((a,b)=>b[1].qty-a[1].qty).map(([dl,d])=>'<tr><td><strong>'+dl+'</strong></td>'+tdC(d.ch.size)+tdR(d.qty)+'<td class="num">'+pct(d.qty,dlTotQ)+'</td><td>'+bar(d.qty,maxDQ,'g')+'</td></tr>').join('')||emptyRow(5);
 }
 
 // ============================================================
 // RENDER: VISITS PERFORMANCE
 // ============================================================
 function renderVisits(){
+  const cwVis=fVis();
+  const cwSell=fSell();
   const allVis=fVisAllTime();
 
-  // ─ WEEKLY TREND ─
-  const wkV={};ALL_WEEKS.forEach(w=>wkV[w]={tot:0,rou:0,fol:0,rel:0,ch:new Set()});
-  allVis.forEach(r=>{if(!wkV[r.week])wkV[r.week]={tot:0,rou:0,fol:0,rel:0,ch:new Set()};wkV[r.week].tot++;wkV[r.week].ch.add(norm(r.channel));const vt=(r.visitType||'').toLowerCase();if(vt.includes('routine'))wkV[r.week].rou++;else if(vt.includes('follow'))wkV[r.week].fol++;else if(vt.includes('relat'))wkV[r.week].rel++;});
-  const maxVQ=Math.max(...Object.values(wkV).map(d=>d.tot),1);
-  document.getElementById('visTrendHead').innerHTML=th(['Week','Date Range','Visits','Channels','Routine','Follow-up','Relationship','WoW &#9650;&#9660;','Volume']);
-  let vtBody='';
-  ALL_WEEKS.forEach((w,i)=>{
-    const d=wkV[w]||{tot:0,rou:0,fol:0,rel:0,ch:new Set()};
-    const pw=i>0?(wkV[ALL_WEEKS[i-1]]||{tot:0}).tot:0;
-    const sel=F.week===w;
-    vtBody+='<tr '+(sel?'class="selected-row"':'')+'><td>'+fmtW(w)+(sel?' ◀':'')+'</td><td style="color:#94a3b8;font-size:10px;">'+wkRange(w)+'</td>'+tdR(d.tot)+tdC(d.ch.size)+tdR(d.rou)+tdR(d.fol)+tdR(d.rel)+'<td class="num">'+trendHtml(d.tot,pw,true)+'</td><td>'+bar(d.tot,maxVQ,'a')+'</td></tr>';
+  renderVisSelBar();
+
+  // ─ 4 OUTCOME KPIs ─
+  renderVisOutcomeKpis(cwVis,cwSell);
+
+  // ─ WEEKLY VISIT TREND CHART ─
+  const wkMap={};
+  allVis.forEach(r=>{if(!wkMap[r.week])wkMap[r.week]=0;wkMap[r.week]++;});
+  const trendData=[...new Set(allVis.map(r=>r.week))].sort((a,b)=>a-b).map(w=>({week:w,qty:wkMap[w]}));
+  const visTrendWrap=document.getElementById('visTrendWrap');
+  if(visTrendWrap){visTrendWrap.innerHTML=buildTrendChartSvg(trendData,F.week);attachVisTrendEvents();}
+
+  // ─ ACTIVITY BARS ─
+  renderVisActivityBars();
+
+  // ─ ACTION REQUIRED ─
+  renderVisActionRequired(cwVis,cwSell);
+
+  // ─ UNASSIGNED ─
+  renderVisUnassigned(cwVis);
+
+  // ─ DETAIL TABLE ─
+  _VIS_DETAIL_DATA=buildVisDetailData(cwVis,cwSell);
+  renderVisDetail();
+}
+
+function attachVisTrendEvents(){
+  const svg=document.querySelector('#visTrendWrap #execTrendSvg');
+  const tip=document.querySelector('#visTrendWrap #execTrendTip');
+  if(!svg||!tip)return;
+  const wrap=svg.parentElement;
+  svg.querySelectorAll('.trend-hit').forEach(el=>{
+    el.addEventListener('click',()=>{const wk=parseInt(el.dataset.wk);setWeekFilter(F.week===wk?null:wk);});
+    el.addEventListener('mouseenter',e=>{const wrect=wrap.getBoundingClientRect();tip.textContent='W'+el.dataset.wk+': '+parseInt(el.dataset.qty).toLocaleString()+' visits';tip.style.display='block';tip.style.left=Math.min(e.clientX-wrect.left+8,wrect.width-130)+'px';tip.style.top=Math.max(e.clientY-wrect.top-32,0)+'px';});
+    el.addEventListener('mouseleave',()=>{tip.style.display='none';});
   });
-  document.getElementById('visTrendBody').innerHTML=vtBody||emptyRow(9);
-
-  // ─ BY SUPERVISOR with CONVERSION ─
-  // Supervisor visits vs sellout conversion for selected period
-  const cwV=fVis();const cwS=fSell();
-  const supVis={};allVis.forEach(r=>{const s=r.supervisor||'?';if(!supVis[s])supVis[s]={tot:0,rou:0,fol:0,rel:0,ch:new Set()};supVis[s].tot++;supVis[s].ch.add(norm(r.channel));const vt=(r.visitType||'').toLowerCase();if(vt.includes('routine'))supVis[s].rou++;else if(vt.includes('follow'))supVis[s].fol++;else if(vt.includes('relat'))supVis[s].rel++;});
-  // Period sellout by supervisor channel
-  const supSell={};cwS.forEach(r=>{const s=r.supervisor||'?';if(!supSell[s])supSell[s]=new Set();if(r.qty>0)supSell[s].add(norm(r.channel));});
-  // Period visited channels by supervisor
-  const supVisCw={};cwV.forEach(r=>{const s=r.supervisor||'?';if(!supVisCw[s])supVisCw[s]=new Set();supVisCw[s].add(norm(r.channel));});
-
-  document.getElementById('visUserHead').innerHTML=th(['Supervisor','All-Time Visits','Unique Channels','Routine','Follow-up','Relationship','Period Visited','Period Sold','Conversion %','Conv Bar']);
-  let vuBody=Object.entries(supVis).sort((a,b)=>b[1].tot-a[1].tot).map(([sup,d])=>{
-    const visCh=supVisCw[sup]?supVisCw[sup].size:0;
-    const soldCh=supSell[sup]?[...supSell[sup]].filter(c=>supVisCw[sup]&&supVisCw[sup].has(c)).length:0;
-    const conv=visCh>0?Math.round(soldCh/visCh*100):0;
-    const isLow=visCh>=3&&conv<30;
-    const convBarW=conv+'%';
-    const convBar='<div class="conv-bar" style="position:relative;" title="'+soldCh+'/'+visCh+' channels converted"><div class="conv-sold" style="width:'+convBarW+'"></div><div class="conv-vis" style="flex:1"></div></div>';
-    return '<tr '+(isLow?'class="warn-row"':'')+'><td><strong>'+sup+'</strong></td>'+tdR(d.tot)+tdC(d.ch.size)+tdR(d.rou)+tdR(d.fol)+tdR(d.rel)+tdC(visCh)+tdC(soldCh)+'<td class="num">'+(isLow?'<span class="badge b-warn">'+conv+'%</span>':conv+'%')+'</td><td style="min-width:80px;">'+convBar+'</td></tr>';
-  }).join('');
-  document.getElementById('visUserBody').innerHTML=vuBody||emptyRow(10);
-
-  // ─ BY REGION ─
-  const regV={};allVis.forEach(r=>{if(!regV[r.region])regV[r.region]={tot:0,ch:new Set()};regV[r.region].tot++;regV[r.region].ch.add(norm(r.channel));});
-  const totVAll=allVis.length;const maxRV=Math.max(...Object.values(regV).map(d=>d.tot),1);
-  document.getElementById('visRegHead').innerHTML=th(['Region','Visits','Channels','% of Total','Volume']);
-  document.getElementById('visRegBody').innerHTML=Object.entries(regV).sort((a,b)=>b[1].tot-a[1].tot).map(([reg,d])=>'<tr><td><strong>'+reg+'</strong></td>'+tdR(d.tot)+tdC(d.ch.size)+'<td class="num">'+pct(d.tot,totVAll)+'</td><td>'+bar(d.tot,maxRV,'a')+'</td></tr>').join('')||emptyRow(5);
-
-  // ─ VISIT vs SELLOUT OUTCOME ─
-  const cwSByCh={};cwS.forEach(r=>{const ch=norm(r.channel);if(!cwSByCh[ch])cwSByCh[ch]=0;cwSByCh[ch]+=r.qty;});
-  const cwVByCh={};cwV.forEach(r=>{const ch=norm(r.channel);if(!cwVByCh[ch])cwVByCh[ch]={sup:r.supervisor,reg:r.region,city:r.city,cnt:0,types:[]};cwVByCh[ch].cnt++;cwVByCh[ch].types.push(r.visitType);});
-  // Include sellout-only channels
-  cwS.forEach(r=>{const ch=norm(r.channel);if(!cwVByCh[ch])cwVByCh[ch]={sup:r.supervisor,reg:r.region,city:r.city,cnt:0,types:['—']};});
-  const outcomes=Object.entries(cwVByCh).map(([ch,vd])=>({ch,vd,units:cwSByCh[ch]||0,hasVis:vd.cnt>0,hasSale:(cwSByCh[ch]||0)>0}));
-  outcomes.sort((a,b)=>{const sa=a.hasSale?2:(a.hasVis?1:0);const sb=b.hasSale?2:(b.hasVis?1:0);return sb-sa||a.ch.localeCompare(b.ch);});
-  document.getElementById('visOutcomeBadge').textContent=outcomes.length+' channels';
-  document.getElementById('visOutcomeHead').innerHTML=th(['Channel','Region','Supervisor','Visits','Visit Types','Units Sold','Outcome']);
-  const voBody=outcomes.map(({ch,vd,units,hasVis,hasSale})=>{
-    const bdg=!hasVis&&hasSale?'<span class="badge b-partial">Sale, No Visit</span>':hasSale?'<span class="badge b-active">Visited + Sold</span>':hasVis?'<span class="badge b-nosale">Visited, No Sale</span>':'<span class="badge b-inactive">No Activity</span>';
-    return '<tr><td><strong>'+ch+'</strong></td><td>'+(vd.reg||'—')+'</td><td>'+(vd.sup||'—')+'</td>'+tdC(vd.cnt||'—')+'<td>'+([...new Set(vd.types)].join(', ')||'—')+'</td>'+tdR(units||'—')+'<td>'+bdg+'</td></tr>';
-  }).join('');
-  document.getElementById('visOutcomeBody').innerHTML=voBody||emptyRow(7);
-
-  // ─ VISIT OUTCOMES SUMMARY TILES ─
-  const assignedVisitedSet=new Set([...Object.keys(cwVByCh)].filter(ch=>ASSIGNED_SET.has(ch)));
-  const visitedAndSoldCnt=[...assignedVisitedSet].filter(ch=>cwSByCh[ch]>0).length;
-  const visitedNoSaleCnt=[...assignedVisitedSet].filter(ch=>!(cwSByCh[ch]>0)).length;
-  const unassignedVisCnt=cwV.filter(r=>!r.dealer).length;
-  const totalAssignedVisited=assignedVisitedSet.size;
-  document.getElementById('visOutcomesSummaryBadge').textContent='assigned channels only';
-  document.getElementById('visOutcomesTiles').innerHTML=
-    '<div class="vis-tile t-green"><div class="vis-tile-val">'+totalAssignedVisited+'</div><div class="vis-tile-lbl">Assigned Visited</div></div>'+
-    '<div class="vis-tile t-green"><div class="vis-tile-val">'+visitedAndSoldCnt+'</div><div class="vis-tile-lbl">Visited + Sold</div></div>'+
-    '<div class="vis-tile t-amber"><div class="vis-tile-val">'+visitedNoSaleCnt+'</div><div class="vis-tile-lbl">Visited, No Sale</div></div>'+
-    '<div class="vis-tile t-slate"><div class="vis-tile-val">'+unassignedVisCnt+'</div><div class="vis-tile-lbl">Unassigned Visits</div></div>';
-
-  // ─ VISITED, NO SALE (dedicated table) ─
-  const noSaleRows=Object.entries(cwVByCh).filter(([ch])=>ASSIGNED_SET.has(ch)&&!(cwSByCh[ch]>0));
-  const lastVisitMeta={};fVisAllTime().forEach(r=>{const ch=norm(r.channel);if(!lastVisitMeta[ch]||r.week>lastVisitMeta[ch].week)lastVisitMeta[ch]={date:r.date||'—',sup:r.supervisor||'—',reg:r.region||'—'};});
-  document.getElementById('visNoSaleBadge').textContent=noSaleRows.length+' channels';
-  document.getElementById('visNoSaleHead').innerHTML=th(['Channel','Region','Supervisor','Visits (Period)','Last Visit Date']);
-  document.getElementById('visNoSaleBody').innerHTML=noSaleRows.sort((a,b)=>b[1]-a[1]).map(([ch,cnt])=>{
-    const meta=lastVisitMeta[ch]||{date:'—',sup:'—',reg:'—'};
-    return '<tr><td><strong>'+ch+'</strong></td><td>'+meta.reg+'</td><td>'+meta.sup+'</td>'+tdC(cnt)+tdC(meta.date)+'</tr>';
-  }).join('')||emptyRow(5,'No visited-without-sale channels in selected period.');
-
-  // ─ NOT ACTIVATED (action required) ─
-  const actForVis=computeActivation();
-  const allTimeLV={};const allTimeTotVis={};
-  fVisAllTime().forEach(r=>{const ch=norm(r.channel);allTimeTotVis[ch]=(allTimeTotVis[ch]||0)+1;if(!allTimeLV[ch]||r.week>allTimeLV[ch].week)allTimeLV[ch]={date:r.date||'—',sup:r.supervisor||'—',week:r.week};});
-  document.getElementById('visNotActBadge').textContent=actForVis.inactive.length+' channels';
-  document.getElementById('visNotActHead').innerHTML=th(['Channel','Region','Total Visits','Last Visit Date','Last Visitor']);
-  document.getElementById('visNotActBody').innerHTML=actForVis.inactive.slice(0,50).map(c=>{
-    const lv=allTimeLV[c.channel];
-    const tvCount=allTimeTotVis[c.channel]||0;
-    const tvDisp=tvCount>0?tvCount:'<span style="color:#484f58;">—</span>';
-    const lvDate=lv?lv.date:'<span style="color:#484f58;">Never visited</span>';
-    const lvSup=lv?lv.sup:'—';
-    return '<tr><td><strong>'+c.channel+'</strong></td><td>'+c.region+'</td>'+tdC(tvDisp)+tdC(lvDate)+'<td>'+lvSup+'</td></tr>';
-  }).join('')||emptyRow(5,'All assigned channels have been activated.');
-
-  // ─ UNASSIGNED / NO DEALER VISITS ─
-  const unassignedVisRows=cwV.filter(r=>!r.dealer);
-  const unCh={};unassignedVisRows.forEach(r=>{const ch=norm(r.channel);if(!unCh[ch])unCh[ch]={cnt:0,sup:r.supervisor||'—',reg:r.region||'—',city:r.city||'—'};unCh[ch].cnt++;});
-  document.getElementById('visUnassignedBadge').textContent=unassignedVisRows.length+' visits · '+Object.keys(unCh).length+' channels · no dealer attribution';
-  document.getElementById('visUnassignedHead').innerHTML=th(['Channel','Region','City','Supervisor','Visits (Period)']);
-  document.getElementById('visUnassignedBody').innerHTML=Object.entries(unCh).sort((a,b)=>b[1].cnt-a[1].cnt).map(([ch,d])=>'<tr><td><strong>'+ch+'</strong></td><td>'+d.reg+'</td><td>'+d.city+'</td><td>'+d.sup+'</td>'+tdC(d.cnt)+'</tr>').join('')||emptyRow(5,'No unassigned visits in selected period.');
 }
 
 // ============================================================
@@ -6004,6 +6031,382 @@ function renderExecDeepDivePanel(){
     rows=[['Period sellout',periodSell>0?periodSell.toLocaleString():'0'],['Period visits',periodVis||'0']];
   }
   bodyEl.innerHTML=rows.map(([k,v])=>`<div class="exec-dd-row"><span class="exec-dd-key">${k}</span><span class="exec-dd-val">${v}</span></div>`).join('');
+}
+
+// ============================================================
+// DQ BADGE
+// ============================================================
+function toggleDqBadge(){
+  const wrap=document.getElementById('dqBadgeWrap');
+  if(wrap)wrap.classList.toggle('open');
+}
+document.addEventListener('click',e=>{
+  const wrap=document.getElementById('dqBadgeWrap');
+  if(wrap&&wrap.classList.contains('open')&&!wrap.contains(e.target))wrap.classList.remove('open');
+});
+
+// ============================================================
+// SELLOUT TAB — state + helpers
+// ============================================================
+let _SELL_PERF_TAB='region';
+let _SELL_MIX_TAB='category';
+let _SELL_CHRANK_TAB='top';
+let _SELL_DETAIL_PAGE=0;
+let _SELL_DETAIL_SORT={col:'allQty',dir:-1};
+let _SELL_DETAIL_DATA=[];
+let _SELL_PERF_LIST=[];
+
+function sellPerfTab(tab,btn){
+  _SELL_PERF_TAB=tab;
+  document.querySelectorAll('#sellPerfTabs .card-tab').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  renderSellPerfBars();
+}
+function sellMixTab(tab,btn){
+  _SELL_MIX_TAB=tab;
+  document.querySelectorAll('#sellMixTabs .card-tab').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  renderSellMixBars();
+}
+function sellChRankTab(tab,btn){
+  _SELL_CHRANK_TAB=tab;
+  document.querySelectorAll('#sellChRankTabs .card-tab').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  renderSellChRankBars();
+}
+function onSellSearch(){_SELL_DETAIL_PAGE=0;renderSellDetail();}
+
+function renderSellSelBar(){
+  const bar=document.getElementById('sellSelBar');if(!bar)return;
+  const chips=[];
+  if(F.week)chips.push(['W'+F.week,()=>setWeekFilter(null)]);
+  if(F.dealer)chips.push(['Dealer: '+F.dealer,()=>setDealerFilter(null)]);
+  if(F.region)chips.push(['Region: '+F.region,()=>setRegionFilter(null)]);
+  if(F.user)chips.push(['PIC: '+F.user,()=>setPicFilter(null)]);
+  if(!chips.length){bar.style.display='none';return;}
+  bar.style.display='flex';
+  bar.innerHTML=chips.map((c,i)=>`<span class="sel-chip" onclick="(${c[1].toString()})()">${c[0]} <span>&#x00D7;</span></span>`).join('')
+    +(chips.length>1?`<button class="exec-sel-clear-all" onclick="clearAllExecFilters()">Clear all</button>`:'');
+}
+
+function renderSellPerfBars(){
+  const cont=document.getElementById('sellPerfBars');if(!cont)return;
+  const cwSell=fSell();const cwVis=fVis();
+  if(_SELL_PERF_TAB==='region'){
+    const regions=[...new Set(NORM_CHANNEL_SELLOUT_REF.map(c=>c.region))].sort();
+    const sellByR={};cwSell.forEach(r=>{sellByR[r.region]=(sellByR[r.region]||0)+r.qty;});
+    const visByR={};cwVis.forEach(r=>{visByR[r.region]=(visByR[r.region]||0)+1;});
+    const max=Math.max(...regions.map(r=>sellByR[r]||0),1);
+    _SELL_PERF_LIST=regions;
+    cont.innerHTML=regions.map((reg,i)=>{
+      const sell=sellByR[reg]||0;const vis=visByR[reg]||0;const pct2=Math.round(sell/max*100);const sel=F.region===reg;
+      return`<div class="exec-bar-row${sel?' selected':''}" onclick="setRegionFilter('${reg.replace(/'/g,"\\'")}' === F.region ? null : '${reg.replace(/'/g,"\\'")}')"><span class="exec-bar-lbl">${reg}</span><div class="exec-bar-track"><div class="exec-bar-fill" style="width:${pct2}%"></div></div><span class="exec-bar-val">${sell>0?sell.toLocaleString():'—'}</span><span class="exec-bar-sub">${vis?vis+'v':'—'}</span></div>`;
+    }).join('');
+  }else if(_SELL_PERF_TAB==='pic'){
+    const sellByP={};cwSell.forEach(r=>{if(r.supervisor)sellByP[r.supervisor]=(sellByP[r.supervisor]||0)+r.qty;});
+    const visByP={};cwVis.forEach(r=>{if(r.supervisor)visByP[r.supervisor]=(visByP[r.supervisor]||0)+1;});
+    const pics=[...new Set([...Object.keys(sellByP),...Object.keys(visByP)])].sort();
+    const max=Math.max(...pics.map(p=>sellByP[p]||0),1);
+    _SELL_PERF_LIST=pics;
+    cont.innerHTML=pics.map((p,i)=>{
+      const sell=sellByP[p]||0;const vis=visByP[p]||0;const pct2=Math.round(sell/max*100);const sel=F.user===p;
+      return`<div class="exec-bar-row${sel?' selected':''}" onclick="setPicFilter('${p.replace(/'/g,"\\'")}' === F.user ? null : '${p.replace(/'/g,"\\'")}')"><span class="exec-bar-lbl">${p}</span><div class="exec-bar-track"><div class="exec-bar-fill" style="width:${pct2}%"></div></div><span class="exec-bar-val">${sell>0?sell.toLocaleString():'—'}</span><span class="exec-bar-sub">${vis?vis+'v':'—'}</span></div>`;
+    }).join('');
+  }else{
+    // dealer
+    const dealerSell={};cwSell.forEach(r=>{if(r.dealer)dealerSell[r.dealer]=(dealerSell[r.dealer]||0)+r.qty;});
+    const assignedBy={};NORM_CHANNEL_SELLOUT_REF.forEach(c=>{if(c.dealer){if(!assignedBy[c.dealer])assignedBy[c.dealer]=0;assignedBy[c.dealer]++;}});
+    const dealers=RAW_DEALER_REF.map(d=>d.dealer);
+    const max=Math.max(...dealers.map(d=>dealerSell[d]||0),1);
+    cont.innerHTML=dealers.map((dl,i)=>{
+      const sell=dealerSell[dl]||0;const pct2=Math.round(sell/max*100);const sel=F.dealer===dl;
+      return`<div class="exec-bar-row${sel?' selected':''}" onclick="setDealerFilter('${dl.replace(/'/g,"\\'")}' === F.dealer ? null : '${dl.replace(/'/g,"\\'")}')"><span class="exec-bar-lbl">${dl}</span><div class="exec-bar-track"><div class="exec-bar-fill${sell===0?' f-muted':''}" style="width:${pct2}%"></div></div><span class="exec-bar-val">${sell>0?sell.toLocaleString():'—'}</span><span class="exec-bar-sub">${(assignedBy[dl]||0)+'ch'}</span></div>`;
+    }).join('');
+  }
+}
+
+function renderSellMixBars(){
+  const cont=document.getElementById('sellMixBars');if(!cont)return;
+  const allSell=fSellAllTime();
+  let entries=[];
+  if(_SELL_MIX_TAB==='category'){
+    const m={};allSell.forEach(r=>{const k=r.category||'Unknown';m[k]=(m[k]||0)+r.qty;});
+    entries=Object.entries(m).sort((a,b)=>b[1]-a[1]);
+  }else if(_SELL_MIX_TAB==='type'){
+    const m={};allSell.forEach(r=>{const k=r.type||'Unknown';m[k]=(m[k]||0)+r.qty;});
+    entries=Object.entries(m).sort((a,b)=>b[1]-a[1]);
+  }else{
+    const m={};allSell.forEach(r=>{const k=r.model||'Unknown';m[k]=(m[k]||0)+r.qty;});
+    entries=Object.entries(m).sort((a,b)=>b[1]-a[1]).slice(0,15);
+  }
+  if(!entries.length){cont.innerHTML='<div style="color:#484f58;font-size:11px;padding:10px;">No data</div>';return;}
+  const total=entries.reduce((s,[,v])=>s+v,0);
+  const max=entries[0][1];
+  cont.innerHTML=entries.map(([k,v])=>{
+    const pct2=Math.round(v/max*100);const pctOfTotal=total>0?Math.round(v/total*100):0;
+    return`<div class="exec-bar-row"><span class="exec-bar-lbl" title="${k}" style="max-width:120px;">${k}</span><div class="exec-bar-track"><div class="exec-bar-fill" style="width:${pct2}%"></div></div><span class="exec-bar-val">${v.toLocaleString()}</span><span class="exec-bar-sub">${pctOfTotal}%</span></div>`;
+  }).join('');
+}
+
+function renderSellChRankBars(){
+  const cont=document.getElementById('sellChRankBars');if(!cont)return;
+  const allSell=fSellAllTime();
+  const chQty={};allSell.filter(r=>r.qty>0).forEach(r=>{const ch=norm(r.channel);chQty[ch]=(chQty[ch]||0)+r.qty;});
+  // Include ALL assigned channels for bottom ranking
+  const allAssigned=new Set(NORM_CHANNEL_SELLOUT_REF.map(c=>c.channel));
+  const entries=Object.entries(chQty).sort((a,b)=>b[1]-a[1]);
+  let rows;
+  if(_SELL_CHRANK_TAB==='top'){
+    rows=entries.slice(0,10);
+  }else{
+    // bottom: include assigned channels with 0 sales
+    const allChEntries=[...allAssigned].map(ch=>[ch,chQty[ch]||0]).sort((a,b)=>a[1]-b[1]).slice(0,10);
+    rows=allChEntries;
+  }
+  if(!rows.length){cont.innerHTML='<div style="color:#484f58;font-size:11px;padding:10px;">No data</div>';return;}
+  const max=Math.max(...rows.map(([,v])=>v),1);
+  cont.innerHTML=rows.map(([ch,v])=>{
+    const pct2=Math.round(v/max*100);
+    return`<div class="exec-bar-row clickable" onclick="sellClickChannel('${ch.replace(/'/g,"\\'")}')" title="${ch}"><span class="exec-bar-lbl" style="max-width:120px;overflow:hidden;text-overflow:ellipsis;">${ch}</span><div class="exec-bar-track"><div class="exec-bar-fill${v===0?' f-muted':''}" style="width:${pct2}%"></div></div><span class="exec-bar-val">${v>0?v.toLocaleString():'—'}</span></div>`;
+  }).join('');
+}
+
+function sellClickChannel(ch){
+  const sel=document.getElementById('fChannel');
+  if(sel){const opt=[...sel.options].find(o=>o.value===ch);if(opt){F.channel=ch;sel.value=ch;invalidateCache();renderSellout();}}
+}
+
+function buildSellDetailData(){
+  const allSell=fSellAllTime();
+  const cwSell=fSell();
+  const chMap={};
+  allSell.filter(r=>r.qty>0).forEach(r=>{
+    const ch=norm(r.channel);
+    if(!chMap[ch])chMap[ch]={channel:r.channel,dealer:r.dealer||'—',region:r.region,pic:r.supervisor||'—',allQty:0,cwQty:0,lastWk:null,assigned:ASSIGNED_SET.has(ch)};
+    chMap[ch].allQty+=r.qty;
+    if(!chMap[ch].lastWk||r.week>chMap[ch].lastWk)chMap[ch].lastWk=r.week;
+  });
+  cwSell.filter(r=>r.qty>0).forEach(r=>{
+    const ch=norm(r.channel);
+    if(chMap[ch])chMap[ch].cwQty+=r.qty;
+    else chMap[ch]={channel:r.channel,dealer:r.dealer||'—',region:r.region,pic:r.supervisor||'—',allQty:r.qty,cwQty:r.qty,lastWk:r.week,assigned:ASSIGNED_SET.has(ch)};
+  });
+  NORM_CHANNEL_SELLOUT_REF.forEach(c=>{
+    const ch=c.channel;
+    if(!chMap[ch])chMap[ch]={channel:c.channel,dealer:c.dealer||'—',region:c.region,pic:'—',allQty:0,cwQty:0,lastWk:null,assigned:true};
+  });
+  return Object.values(chMap);
+}
+
+function renderSellDetail(){
+  const cont=document.getElementById('sellDetailWrap');
+  const pag=document.getElementById('sellPagination');
+  const badge=document.getElementById('sellDetailBadge');
+  if(!cont)return;
+  const q=(document.getElementById('sellSearch')?.value||'').toLowerCase().trim();
+  let data=_SELL_DETAIL_DATA.filter(r=>!q||r.channel.toLowerCase().includes(q)||r.region.toLowerCase().includes(q)||r.pic.toLowerCase().includes(q)||r.dealer.toLowerCase().includes(q));
+  // Sort
+  const{col,dir}=_SELL_DETAIL_SORT;
+  data=[...data].sort((a,b)=>{
+    const av=a[col]??-Infinity;const bv=b[col]??-Infinity;
+    if(typeof av==='string')return dir*(av.localeCompare(bv));
+    return dir*(av-bv);
+  });
+  if(badge)badge.textContent=data.length+' channels';
+  const PAGE=15;
+  const totalPgs=Math.max(1,Math.ceil(data.length/PAGE));
+  if(_SELL_DETAIL_PAGE>=totalPgs)_SELL_DETAIL_PAGE=totalPgs-1;
+  const page=data.slice(_SELL_DETAIL_PAGE*PAGE,(_SELL_DETAIL_PAGE+1)*PAGE);
+  const cols=[{k:'channel',l:'Channel'},{k:'dealer',l:'Dealer'},{k:'region',l:'Region'},{k:'pic',l:'PIC'},{k:'cwQty',l:'CW Sellout',num:true},{k:'allQty',l:'All-time',num:true},{k:'lastWk',l:'Last Sale'}];
+  const thHtml=cols.map(c=>{const s=_SELL_DETAIL_SORT.col===c.k?(_SELL_DETAIL_SORT.dir===-1?' sort-desc':' sort-asc'):'';return`<th class="${s}" onclick="sellDetailSort('${c.k}')">${c.l}</th>`;}).join('');
+  const tdHtml=page.map(r=>`<tr><td>${r.channel}</td><td style="color:#8b949e;">${r.dealer}</td><td style="color:#8b949e;">${r.region}</td><td style="color:#8b949e;">${r.pic}</td><td class="num">${r.cwQty>0?r.cwQty:'—'}</td><td class="num">${r.allQty>0?r.allQty:'—'}</td><td>${r.lastWk?'W'+r.lastWk:'—'}</td></tr>`).join('');
+  cont.innerHTML=`<table class="sell-tbl"><thead><tr>${thHtml}</tr></thead><tbody>${tdHtml||'<tr><td colspan="7" style="text-align:center;color:#484f58;padding:12px;">No results</td></tr>'}</tbody></table>`;
+  if(pag){
+    pag.innerHTML=`<span>${_SELL_DETAIL_PAGE*PAGE+1}–${Math.min((_SELL_DETAIL_PAGE+1)*PAGE,data.length)} of ${data.length}</span>`
+      +`<button class="sell-pg-btn" onclick="_SELL_DETAIL_PAGE--;renderSellDetail()" ${_SELL_DETAIL_PAGE===0?'disabled':''}>‹ Prev</button>`
+      +`<button class="sell-pg-btn" onclick="_SELL_DETAIL_PAGE++;renderSellDetail()" ${_SELL_DETAIL_PAGE>=totalPgs-1?'disabled':''}>Next ›</button>`;
+  }
+}
+function sellDetailSort(col){
+  if(_SELL_DETAIL_SORT.col===col)_SELL_DETAIL_SORT.dir*=-1;
+  else{_SELL_DETAIL_SORT={col,dir:-1};}
+  _SELL_DETAIL_PAGE=0;renderSellDetail();
+}
+
+// ============================================================
+// VISITS TAB — state + helpers
+// ============================================================
+let _VIS_ACTIVITY_TAB='pic';
+let _VIS_OUTCOME_FILTER=null;
+let _VIS_DETAIL_PAGE=0;
+let _VIS_DETAIL_SORT={col:'week',dir:-1};
+let _VIS_DETAIL_DATA=[];
+let _VIS_ACTIVITY_LIST=[];
+
+function visActivityTab(tab,btn){
+  _VIS_ACTIVITY_TAB=tab;
+  document.querySelectorAll('#visActivityTabs .card-tab').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  renderVisActivityBars();
+}
+function setVisOutcomeFilter(type){
+  _VIS_OUTCOME_FILTER=_VIS_OUTCOME_FILTER===type?null:type;
+  _VIS_DETAIL_PAGE=0;
+  renderVisits();
+}
+function onVisSearch(){_VIS_DETAIL_PAGE=0;renderVisDetail();}
+
+function renderVisSelBar(){
+  const bar=document.getElementById('visSelBar');if(!bar)return;
+  const chips=[];
+  if(F.week)chips.push(['W'+F.week,()=>setWeekFilter(null)]);
+  if(F.dealer)chips.push(['Dealer: '+F.dealer,()=>setDealerFilter(null)]);
+  if(F.region)chips.push(['Region: '+F.region,()=>setRegionFilter(null)]);
+  if(F.user)chips.push(['PIC: '+F.user,()=>setPicFilter(null)]);
+  if(!chips.length){bar.style.display='none';return;}
+  bar.style.display='flex';
+  bar.innerHTML=chips.map((c,i)=>`<span class="sel-chip" onclick="(${c[1].toString()})()">${c[0]} <span>&#x00D7;</span></span>`).join('')
+    +(chips.length>1?`<button class="exec-sel-clear-all" onclick="clearAllExecFilters()">Clear all</button>`:'');
+}
+
+function renderVisOutcomeKpis(cwVis,cwSell){
+  const cont=document.getElementById('visOutcomeKpis');if(!cont)return;
+  const cwVisCh=new Set(cwVis.map(r=>norm(r.channel)));
+  const cwSoldCh=new Set(cwSell.filter(r=>r.qty>0).map(r=>norm(r.channel)).filter(ch=>ASSIGNED_SET.has(ch)));
+  const visitedAssigned=cwVis.filter(r=>ASSIGNED_SET.has(norm(r.channel)));
+  const visitedAndSold=visitedAssigned.filter(r=>cwSoldCh.has(norm(r.channel)));
+  const visitedNoSale=visitedAssigned.filter(r=>!cwSoldCh.has(norm(r.channel)));
+  const unassigned=cwVis.filter(r=>!ASSIGNED_SET.has(norm(r.channel)));
+  const kpis=[
+    {key:'assigned',lbl:'Assigned visited',val:visitedAssigned.length,sub:pct(visitedAssigned.length,cwVis.length)+' of total visits',color:''},
+    {key:'sold',lbl:'Visited + sold',val:visitedAndSold.length,sub:'conversion achieved',color:'kpi-green-border'},
+    {key:'nosale',lbl:'Visited, no sale',val:visitedNoSale.length,sub:'follow-up needed',color:'kpi-amber-border'},
+    {key:'unassigned',lbl:'Unassigned / no dealer',val:unassigned.length,sub:'not in channel ref',color:'kpi-red-border'}
+  ];
+  cont.innerHTML=kpis.map(k=>{
+    const sel=_VIS_OUTCOME_FILTER===k.key;
+    return`<div class="vis-outcome-kpi${sel?' selected':''}" onclick="setVisOutcomeFilter('${k.key}')">
+      <div class="vis-outcome-lbl">${k.lbl}</div>
+      <div class="vis-outcome-val">${k.val.toLocaleString()}</div>
+      <div class="vis-outcome-sub">${k.sub}</div>
+      <div class="vis-outcome-clr">&#x00D7; Clear filter</div>
+    </div>`;
+  }).join('');
+}
+
+function renderVisActivityBars(){
+  const cont=document.getElementById('visActivityBars');if(!cont)return;
+  const cwVis=fVis();const cwSell=fSell();
+  const cwSoldCh=new Set(cwSell.filter(r=>r.qty>0).map(r=>norm(r.channel)).filter(ch=>ASSIGNED_SET.has(ch)));
+  if(_VIS_ACTIVITY_TAB==='pic'){
+    const visByP={};cwVis.forEach(r=>{if(r.supervisor)visByP[r.supervisor]=(visByP[r.supervisor]||0)+1;});
+    const soldByP={};cwSell.forEach(r=>{if(r.supervisor&&r.qty>0)soldByP[r.supervisor]=(soldByP[r.supervisor]||0)+r.qty;});
+    const pics=Object.keys(visByP).sort();
+    const max=Math.max(...Object.values(visByP),1);
+    _VIS_ACTIVITY_LIST=pics;
+    cont.innerHTML=pics.map(p=>{
+      const vis=visByP[p]||0;const sell=soldByP[p]||0;const pct2=Math.round(vis/max*100);const sel=F.user===p;
+      return`<div class="exec-bar-row${sel?' selected':''}" onclick="setPicFilter('${p.replace(/'/g,"\\'")}' === F.user ? null : '${p.replace(/'/g,"\\'")}')"><span class="exec-bar-lbl">${p}</span><div class="exec-bar-track"><div class="exec-bar-fill" style="width:${pct2}%"></div></div><span class="exec-bar-val">${vis}v</span><span class="exec-bar-sub">${sell>0?sell+'s':'—'}</span></div>`;
+    }).join('');
+  }else{
+    const visByR={};cwVis.forEach(r=>{if(r.region)visByR[r.region]=(visByR[r.region]||0)+1;});
+    const regs=Object.keys(visByR).sort();
+    const max=Math.max(...Object.values(visByR),1);
+    cont.innerHTML=regs.map(reg=>{
+      const vis=visByR[reg]||0;const pct2=Math.round(vis/max*100);const sel=F.region===reg;
+      return`<div class="exec-bar-row${sel?' selected':''}" onclick="setRegionFilter('${reg.replace(/'/g,"\\'")}' === F.region ? null : '${reg.replace(/'/g,"\\'")}')"><span class="exec-bar-lbl">${reg}</span><div class="exec-bar-track"><div class="exec-bar-fill" style="width:${pct2}%"></div></div><span class="exec-bar-val">${vis}v</span></div>`;
+    }).join('');
+  }
+}
+
+function renderVisActionRequired(cwVis,cwSell){
+  const cwSByCh={};cwSell.forEach(r=>{const ch=norm(r.channel);cwSByCh[ch]=(cwSByCh[ch]||0)+r.qty;});
+  const cwVByCh={};cwVis.forEach(r=>{const ch=norm(r.channel);cwVByCh[ch]=(cwVByCh[ch]||0)+1;});
+  const act=computeActivation();
+
+  // Visited no sale
+  const nsBadge=document.getElementById('visNoSaleBadge');
+  const nsBody=document.getElementById('visNoSaleBody');
+  const allNS=Object.entries(cwVByCh).filter(([ch])=>ASSIGNED_SET.has(ch)&&!(cwSByCh[ch]>0));
+  if(nsBadge)nsBadge.textContent=allNS.length;
+  const chRef={};NORM_CHANNEL_SELLOUT_REF.forEach(c=>{chRef[c.channel]={region:c.region,dealer:c.dealer};});
+  const nsRows=allNS.sort((a,b)=>b[1]-a[1]).slice(0,8);
+  let nsHtml=nsRows.map(([ch,cnt])=>{
+    const info=chRef[ch]||{};
+    return`<div class="vis-ar-row"><span class="vis-ar-badge ns">No Sale</span><span class="vis-ar-ch" title="${ch}">${ch}</span><span class="vis-ar-meta">${cnt}v${info.region?' · '+info.region:''}</span></div>`;
+  }).join('');
+  if(allNS.length>nsRows.length)nsHtml+=`<div class="vis-ar-footer">+${allNS.length-nsRows.length} more</div>`;
+  if(nsBody)nsBody.innerHTML=nsHtml||'<div style="color:#7d8590;font-size:11px;padding:8px 4px;">All visited channels sold</div>';
+
+  // Not activated
+  const naBadge=document.getElementById('visNotActBadge');
+  const naBody=document.getElementById('visNotActBody');
+  if(naBadge)naBadge.textContent=act.inactive.length;
+  const naRows=act.inactive.slice(0,8);
+  let naHtml=naRows.map(c=>{
+    const info=chRef[c.channel]||{};
+    return`<div class="vis-ar-row"><span class="vis-ar-badge na">Not Act.</span><span class="vis-ar-ch" title="${c.channel}">${c.channel}</span><span class="vis-ar-meta">${c.region||''}${info.dealer?' · '+info.dealer:''}</span></div>`;
+  }).join('');
+  if(act.inactive.length>naRows.length)naHtml+=`<div class="vis-ar-footer">+${act.inactive.length-naRows.length} more</div>`;
+  if(naBody)naBody.innerHTML=naHtml||'<div style="color:#7d8590;font-size:11px;padding:8px 4px;">All channels activated</div>';
+}
+
+function renderVisUnassigned(cwVis){
+  const cont=document.getElementById('visUnassignedBody');
+  const badge=document.getElementById('visUnassignedBadge');
+  if(!cont)return;
+  const unassigned=cwVis.filter(r=>!ASSIGNED_SET.has(norm(r.channel)));
+  if(badge)badge.textContent=unassigned.length+' visits';
+  if(!unassigned.length){cont.innerHTML='<div style="color:#7d8590;font-size:11px;padding:8px 4px;">No unassigned visits this period</div>';return;}
+  const chCnt={};unassigned.forEach(r=>{const ch=r.channel||'Unknown';chCnt[ch]=(chCnt[ch]||0)+1;});
+  const top=Object.entries(chCnt).sort((a,b)=>b[1]-a[1]).slice(0,10);
+  let html=top.map(([ch,cnt])=>`<div class="vis-unassigned-row"><span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${ch}</span><span style="color:#7d8590;flex-shrink:0;">${cnt} visit${cnt>1?'s':''}</span></div>`).join('');
+  if(Object.keys(chCnt).length>10)html+=`<div style="font-size:11px;color:#7d8590;padding:6px 2px;">+${Object.keys(chCnt).length-10} more channels not shown</div>`;
+  cont.innerHTML=html;
+}
+
+function buildVisDetailData(cwVis,cwSell){
+  const cwSoldCh=new Set(cwSell.filter(r=>r.qty>0).map(r=>norm(r.channel)));
+  let data=cwVis;
+  if(_VIS_OUTCOME_FILTER==='assigned')data=cwVis.filter(r=>ASSIGNED_SET.has(norm(r.channel)));
+  else if(_VIS_OUTCOME_FILTER==='sold')data=cwVis.filter(r=>ASSIGNED_SET.has(norm(r.channel))&&cwSoldCh.has(norm(r.channel)));
+  else if(_VIS_OUTCOME_FILTER==='nosale')data=cwVis.filter(r=>ASSIGNED_SET.has(norm(r.channel))&&!cwSoldCh.has(norm(r.channel)));
+  else if(_VIS_OUTCOME_FILTER==='unassigned')data=cwVis.filter(r=>!ASSIGNED_SET.has(norm(r.channel)));
+  return data.map(r=>({channel:r.channel,dealer:r.dealer||'—',region:r.region,pic:r.supervisor||'—',week:r.week,date:r.date,outcome:r.outcome||'Visit',assigned:ASSIGNED_SET.has(norm(r.channel))}));
+}
+
+function renderVisDetail(){
+  const cont=document.getElementById('visDetailWrap');
+  const pag=document.getElementById('visPagination');
+  const badge=document.getElementById('visDetailBadge');
+  if(!cont)return;
+  const q=(document.getElementById('visSearch')?.value||'').toLowerCase().trim();
+  let data=_VIS_DETAIL_DATA.filter(r=>!q||r.channel.toLowerCase().includes(q)||r.pic.toLowerCase().includes(q)||r.region.toLowerCase().includes(q)||r.outcome.toLowerCase().includes(q));
+  const{col,dir}=_VIS_DETAIL_SORT;
+  data=[...data].sort((a,b)=>{
+    const av=a[col]??-Infinity;const bv=b[col]??-Infinity;
+    if(typeof av==='string')return dir*(av.localeCompare(bv));
+    return dir*(av-bv);
+  });
+  if(badge)badge.textContent=data.length+' visits';
+  const PAGE=15;
+  const totalPgs=Math.max(1,Math.ceil(data.length/PAGE));
+  if(_VIS_DETAIL_PAGE>=totalPgs)_VIS_DETAIL_PAGE=totalPgs-1;
+  const page=data.slice(_VIS_DETAIL_PAGE*PAGE,(_VIS_DETAIL_PAGE+1)*PAGE);
+  const cols=[{k:'channel',l:'Channel'},{k:'dealer',l:'Dealer'},{k:'region',l:'Region'},{k:'pic',l:'PIC'},{k:'week',l:'Week',num:true},{k:'date',l:'Date'},{k:'outcome',l:'Outcome'}];
+  const thHtml=cols.map(c=>{const s=_VIS_DETAIL_SORT.col===c.k?(_VIS_DETAIL_SORT.dir===-1?' sort-desc':' sort-asc'):'';return`<th class="${s}" onclick="visDetailSort('${c.k}')">${c.l}</th>`;}).join('');
+  const tdHtml=page.map(r=>`<tr><td>${r.channel}</td><td style="color:#8b949e;">${r.dealer}</td><td style="color:#8b949e;">${r.region}</td><td style="color:#8b949e;">${r.pic}</td><td class="num">W${r.week}</td><td style="color:#8b949e;">${r.date||'—'}</td><td>${r.outcome}</td></tr>`).join('');
+  cont.innerHTML=`<table class="sell-tbl"><thead><tr>${thHtml}</tr></thead><tbody>${tdHtml||'<tr><td colspan="7" style="text-align:center;color:#484f58;padding:12px;">No results</td></tr>'}</tbody></table>`;
+  if(pag){
+    pag.innerHTML=`<span>${_VIS_DETAIL_PAGE*PAGE+1}–${Math.min((_VIS_DETAIL_PAGE+1)*PAGE,data.length)} of ${data.length}</span>`
+      +`<button class="sell-pg-btn" onclick="_VIS_DETAIL_PAGE--;renderVisDetail()" ${_VIS_DETAIL_PAGE===0?'disabled':''}>‹ Prev</button>`
+      +`<button class="sell-pg-btn" onclick="_VIS_DETAIL_PAGE++;renderVisDetail()" ${_VIS_DETAIL_PAGE>=totalPgs-1?'disabled':''}>Next ›</button>`;
+  }
+}
+function visDetailSort(col){
+  if(_VIS_DETAIL_SORT.col===col)_VIS_DETAIL_SORT.dir*=-1;
+  else{_VIS_DETAIL_SORT={col,dir:-1};}
+  _VIS_DETAIL_PAGE=0;renderVisDetail();
 }
 
 // ============================================================
