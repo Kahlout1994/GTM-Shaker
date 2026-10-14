@@ -24,7 +24,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-s
 .fg select option{background:#161b22;color:#e6edf3;}
 .filter-actions{display:flex;gap:6px;align-items:flex-end;}
 .btn{padding:5px 13px;border:none;border-radius:4px;font-size:12px;font-weight:600;cursor:pointer;height:29px;}
-.btn-primary{background:#1f6feb;color:#fff;}
+.btn-primary{background:var(--ist-accent);color:#fff;}
 .btn-primary:hover{background:#388bfd;}
 .btn-reset{background:#21262d;color:#7d8590;border:1px solid #30363d;}
 .btn-reset:hover{background:#30363d;color:#e6edf3;}
@@ -320,7 +320,7 @@ tbody tr:hover{background:#1c2128;}
 .vis-outcome-kpi.selected .vis-outcome-clr{display:block;}
 .vis-action-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
 .vis-ar-row{display:flex;align-items:center;gap:8px;padding:6px 4px;border-bottom:1px solid #161b22;cursor:pointer;}
-.vis-ar-row:hover{background:#0d1117;border-radius:4px;}
+.vis-ar-row:hover{background:rgba(255,255,255,.03);border-radius:4px;}
 .vis-ar-badge{padding:1px 5px;border-radius:3px;font-size:9px;font-weight:700;flex-shrink:0;}
 .vis-ar-badge.ns{background:rgba(248,161,73,.15);color:#f8a149;}
 .vis-ar-badge.na{background:rgba(248,81,73,.15);color:#f85149;}
@@ -519,6 +519,14 @@ tbody tr:hover{background:#1c2128;}
     </div>
     <div id="sellDetailWrap"></div>
     <div class="sell-pagination" id="sellPagination"></div>
+  </div>
+  <!-- Channel Deep Dive Panel -->
+  <div class="exec-card" id="sellChDdPanel" style="display:none;border-left:2px solid var(--ist-accent);">
+    <div class="exec-card-hdr">
+      <span class="exec-card-title" id="sellChDdTitle">Channel Deep Dive</span>
+      <button onclick="closeSellChDd()" style="background:none;border:1px solid rgba(255,255,255,.1);color:#7d8590;cursor:pointer;font-size:11px;padding:3px 9px;border-radius:4px;transition:all .15s;" onmouseover="this.style.color='#e6edf3'" onmouseout="this.style.color='#7d8590'">✕ Close</button>
+    </div>
+    <div id="sellChDdBody"></div>
   </div>
 </div>
 
@@ -5990,7 +5998,7 @@ function buildTrendChartSvg(data,selWk){
   const yMid=Math.round(minV+rng/2);
   const ylbls=[{v:minV},{v:yMid},{v:maxV}].map(o=>`<text x="${pl-4}" y="${(ys(o.v)+3).toFixed(1)}" text-anchor="end" style="font-size:7px;fill:#484f58;font-family:sans-serif;">${o.v}</text>`).join('');
   const vlines=data.map((d,i)=>selWk===d.week?`<line x1="${xs(i).toFixed(1)}" y1="${pt}" x2="${xs(i).toFixed(1)}" y2="${pt+ch}" stroke="var(--ist-accent)" stroke-width="1" stroke-dasharray="3,2" opacity=".5"/>`:'').join('');
-  const pts=data.map((d,i)=>{const isSel=selWk===d.week;return`<circle cx="${xs(i).toFixed(1)}" cy="${ys(d.qty).toFixed(1)}" r="${isSel?5:2.5}" style="fill:${isSel?'var(--ist-accent)':'#13181f'};stroke:var(--ist-accent);stroke-width:${isSel?0:1.5};"/>`;}).join('');
+  const pts=data.map((d,i)=>{const isSel=selWk===d.week;return`<circle cx="${xs(i).toFixed(1)}" cy="${ys(d.qty).toFixed(1)}" r="${isSel?5:2.5}" style="fill:${isSel?'var(--ist-accent)':'#1a1a1a'};stroke:var(--ist-accent);stroke-width:${isSel?0:1.5};"/>`;}).join('');
   const hits=data.map((d,i)=>`<rect x="${(xs(i)-11).toFixed(1)}" y="${pt}" width="22" height="${ch}" fill="transparent" class="trend-hit" data-wk="${d.week}" data-qty="${d.qty}" style="cursor:pointer;"/>`).join('');
   return`<svg viewBox="0 0 ${W} ${H}" class="exec-trend-svg" id="execTrendSvg"><defs><linearGradient id="execGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--ist-accent)" stop-opacity=".2"/><stop offset="100%" stop-color="var(--ist-accent)" stop-opacity=".01"/></linearGradient></defs>${ylbls}${vlines}<path d="${areaPath}" fill="url(#execGrad)"/><path d="${linePath}" fill="none" stroke="var(--ist-accent)" stroke-width="1.5" stroke-linejoin="round"/>${hits}${xlbls}${pts}</svg><div class="exec-trend-tip" id="execTrendTip"></div>`;
 }
@@ -6251,8 +6259,56 @@ function renderSellChRankBars(){
 }
 
 function sellClickChannel(ch){
-  const sel=document.getElementById('fChannel');
-  if(sel){const opt=[...sel.options].find(o=>o.value===ch);if(opt){F.channel=ch;sel.value=ch;invalidateCache();renderSellout();}}
+  SELL_CH_DD=ch;
+  renderSellChannelDd();
+}
+function closeSellChDd(){
+  SELL_CH_DD=null;
+  const p=document.getElementById('sellChDdPanel');
+  if(p)p.style.display='none';
+}
+function renderSellChannelDd(){
+  const panel=document.getElementById('sellChDdPanel');
+  const body=document.getElementById('sellChDdBody');
+  if(!panel||!body||!SELL_CH_DD)return;
+  panel.style.display='block';
+  const nCh=norm(SELL_CH_DD);
+  const ref=NORM_CHANNEL_SELLOUT_REF.find(c=>norm(c.channel)===nCh)||{};
+  const dealer=ref.dealer||'—';
+  const region=ref.region||'—';
+  const assigned=ASSIGNED_SET.has(nCh);
+  const act=computeActivation();
+  const actEntry=act.active.find(c=>norm(c.channel)===nCh);
+  const isActive=!!actEntry;
+  const pic=actEntry?.supervisor||'—';
+  const allChSell=fSellAllTime().filter(r=>norm(r.channel)===nCh);
+  const cwChSell=fSell().filter(r=>norm(r.channel)===nCh);
+  const periodQty=cwChSell.reduce((s,r)=>s+r.qty,0);
+  const lastWk=allChSell.reduce((m,r)=>Math.max(m,r.week),0);
+  const visitCount=fVis().filter(r=>norm(r.channel)===nCh).length;
+  const wkMap={};allChSell.forEach(r=>{wkMap[r.week]=(wkMap[r.week]||0)+r.qty;});
+  const allWks=[...new Set(fSellAllTime().map(r=>r.week))].sort((a,b)=>a-b);
+  const trendData=allWks.map(w=>({week:w,qty:wkMap[w]||0}));
+  const statusClr=assigned?(isActive?'#3fb950':'#f85149'):'#484f58';
+  const statusLbl=assigned?(isActive?'Active':'Not Activated'):'Unassigned';
+  const dispName=SELL_CH_DD.length>44?SELL_CH_DD.substring(0,44)+'…':SELL_CH_DD;
+  document.getElementById('sellChDdTitle').textContent=dispName+' — Deep Dive';
+  body.innerHTML=`
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px;">
+      <div class="sell-kpi"><div class="sell-kpi-lbl">Dealer</div><div class="sell-kpi-val" style="font-size:13px;white-space:normal;">${dealer}</div></div>
+      <div class="sell-kpi"><div class="sell-kpi-lbl">Region</div><div class="sell-kpi-val" style="font-size:13px;">${region}</div></div>
+      <div class="sell-kpi"><div class="sell-kpi-lbl">PIC</div><div class="sell-kpi-val" style="font-size:13px;">${pic}</div></div>
+      <div class="sell-kpi"><div class="sell-kpi-lbl">Status</div><div class="sell-kpi-val" style="font-size:13px;color:${statusClr};">${statusLbl}</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;">
+      <div class="sell-kpi"><div class="sell-kpi-lbl">Period Sellout</div><div class="sell-kpi-val">${periodQty>0?periodQty.toLocaleString():'—'}</div></div>
+      <div class="sell-kpi"><div class="sell-kpi-lbl">Visits (Period)</div><div class="sell-kpi-val">${visitCount>0?visitCount:'—'}</div></div>
+      <div class="sell-kpi"><div class="sell-kpi-lbl">Last Sale Week</div><div class="sell-kpi-val" style="font-size:16px;">${lastWk?'W'+lastWk:'—'}</div></div>
+    </div>
+    <div style="font-size:10px;font-weight:700;color:#7d8590;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;">Weekly Sellout Trend</div>
+    ${trendData.length?buildTrendChartSvg(trendData,F.week):'<div style="color:#484f58;font-size:11px;padding:10px 0;">No sellout data available</div>'}
+  `;
+  panel.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
 function buildSellDetailData(){
@@ -6298,7 +6354,7 @@ function renderSellDetail(){
   const page=data.slice(_SELL_DETAIL_PAGE*PAGE,(_SELL_DETAIL_PAGE+1)*PAGE);
   const cols=[{k:'channel',l:'Channel'},{k:'dealer',l:'Dealer'},{k:'region',l:'Region'},{k:'pic',l:'PIC'},{k:'cwQty',l:'CW Sellout',num:true},{k:'allQty',l:'All-time',num:true},{k:'lastWk',l:'Last Sale'}];
   const thHtml=cols.map(c=>{const s=_SELL_DETAIL_SORT.col===c.k?(_SELL_DETAIL_SORT.dir===-1?' sort-desc':' sort-asc'):'';return`<th class="${s}" onclick="sellDetailSort('${c.k}')">${c.l}</th>`;}).join('');
-  const tdHtml=page.map(r=>`<tr><td>${r.channel}</td><td style="color:#8b949e;">${r.dealer}</td><td style="color:#8b949e;">${r.region}</td><td style="color:#8b949e;">${r.pic}</td><td class="num">${r.cwQty>0?r.cwQty:'—'}</td><td class="num">${r.allQty>0?r.allQty:'—'}</td><td>${r.lastWk?'W'+r.lastWk:'—'}</td></tr>`).join('');
+  const tdHtml=page.map(r=>`<tr class="clickable" onclick="sellClickChannel('${r.channel.replace(/'/g,"\\'")}')"><td>${r.channel}</td><td style="color:#8b949e;">${r.dealer}</td><td style="color:#8b949e;">${r.region}</td><td style="color:#8b949e;">${r.pic}</td><td class="num">${r.cwQty>0?r.cwQty:'—'}</td><td class="num">${r.allQty>0?r.allQty:'—'}</td><td>${r.lastWk?'W'+r.lastWk:'—'}</td></tr>`).join('');
   cont.innerHTML=`<table class="sell-tbl"><thead><tr>${thHtml}</tr></thead><tbody>${tdHtml||'<tr><td colspan="7" style="text-align:center;color:#484f58;padding:12px;">No results</td></tr>'}</tbody></table>`;
   if(pag){
     pag.innerHTML=`<span>${_SELL_DETAIL_PAGE*PAGE+1}–${Math.min((_SELL_DETAIL_PAGE+1)*PAGE,data.length)} of ${data.length}</span>`
